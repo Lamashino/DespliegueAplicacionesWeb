@@ -292,7 +292,7 @@ Ahora vemos el caso contrario, tenemos que `origin/master` está por delante que
 que la rama `master` local.
 
 Ahora necesitamos incorporar los cambios de la rama remota en la local. La forma de hacerlo
-lo vimos en el [capítulo anterior](/ramas/#mezclar-ramas) usando `git merge` o `git rebase`.
+lo vimos en el [capítulo anterior](./ramas.md#mezclar-ramas) usando `git merge` o `git rebase`.
 
 Habitualmente se usa `git merge`:
 
