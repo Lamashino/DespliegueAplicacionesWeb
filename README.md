@@ -1,5 +1,7 @@
 Modificación del proyecto original.
 
+**CÓMO ACTUALIZAR DOCUMENTACIÓN**
+
 Para compilar la documentación, desde la copia local ejecutar lo siguiente:
 
 mkdocs gh-deploy
