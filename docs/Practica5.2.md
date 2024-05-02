@@ -1,15 +1,15 @@
 ---
-title: Ejercicios Git y Github (II)
+title: Práctica 5.2 - Ejercicios Git y Github (II)
 ---
 
 !!!info "Nota"
     Cuando se habla de ***zona de intercambio temporal*** o zona ***staging***, estamos hablando de un `add`
 
     ![](img/inter.png){: style="width:450px"}
-
+    
     Si tenéis dudas para realizar estos ejercicios, podéis consultar la [siguiente web](https://aprendeconalf.es/docencia/git/manual/)
 
-# Enunciados 
+# Práctica 5.2 - Enunciados
 
 ## Ejercicios de creación y actualización de repositorios
 
@@ -49,7 +49,7 @@ Realizar un commit de los últimos cambios con el mensaje “Añadido índice de
 
 Cambiar el fichero `indice.txt` para que contenga lo siguiente:
 
-```    
+```
 Capítulo 1: Introducción a Git
 Capítulo 2: Flujo de trabajo básico
 Capítulo 3: Gestión de ramas
@@ -68,7 +68,6 @@ Cambiar el mensaje del último commit por “*Añadido capítulo 3 sobre gestió
 
 Volver a mostrar los últimos cambios del repositorio.
 
-
 ## Ejercicios de manejo del historial de cambios
 
 ### Ejercicio 1
@@ -84,7 +83,6 @@ Añadir los cambios a la zona de intercambio temporal.
 Hacer un commit de los cambios con el mensaje *“Añadido capítulo 1.”*
 Volver a mostrar el historial de cambios del repositorio.
 
-
 ### Ejercicio 2
 
 Crear el fichero `capitulo2.txt` en la carpeta capitulos con el siguiente texto.
@@ -98,7 +96,6 @@ Añadir los cambios a la zona de intercambio temporal.
 Hacer un commit de los cambios con el mensaje “*Añadido capítulo 2.”*
 
 Mostrar las diferencias entre la última versión y dos versiones anteriores.
-
 
 ### Ejercicio 3
 
@@ -325,7 +322,7 @@ Hacer un Pull Request de los cambios en la rama autoria.
 ## Evaluación
 
 | Criterio                                               | Puntuación |
-|--------------------------------------------------------|------------|
+| ------------------------------------------------------ | ---------- |
 | Ejercicios de creación y actualización de repositorios | 2 puntos   |
 | Ejercicios de manejo del historial de cambios          | 2 puntos   |
 | Ejercicios de deshacer cambios                         | 2 puntos   |

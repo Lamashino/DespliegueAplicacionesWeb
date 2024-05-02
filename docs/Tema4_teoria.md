@@ -2,7 +2,7 @@
 title: 'Tema 4 - Servicios de red implicados en el despliegue de aplicaciones web'
 ---
 
-# Servicio DNS (Domain Name System)
+# Tema 4 - Servicio DNS (Domain Name System)
 
 ## Introducción
 
@@ -58,14 +58,15 @@ Tomemos como ejemplo el dominio deaw.es. y veamos parte de su archivo de zona
 
 ```linuxconfig
 ...
-deaw.es.		 IN	NS		ns1.deaw.es.
-ns1.deaw.es.	 IN	A		192.168.1.20
-natos.deaw.es. IN	A		192.168.1.21
-waor.deaw.es.	 IN	A		192.168.1.22
-www.deaw.es.	 IN	CNAME	natos.deaw.es.
-ftp.deaw.es.	 IN	CNAME	waor.deaw.es.
+deaw.es.         IN    NS        ns1.deaw.es.
+ns1.deaw.es.     IN    A        192.168.1.20
+natos.deaw.es. IN    A        192.168.1.21
+waor.deaw.es.     IN    A        192.168.1.22
+www.deaw.es.     IN    CNAME    natos.deaw.es.
+ftp.deaw.es.     IN    CNAME    waor.deaw.es.
 ...
 ```
+
 <u>A cada una de las líneas del fichero se las conoce como registros de recurso (RR: Resource Records) y definen los tipos de datos en el Domain Name System (DNS)</u>. Se utilizan para almacenar datos sobre nombres de dominio y direcciones IP. Una base de datos o fichero de zona está formada por una serie de registros de recursos. Cada registro de recurso da información pertinente sobre un objeto determinado. Por ejemplo, los **registros de tipo (A)** asocian un nombre de host con una dirección IP, y los **registros de puntero de búsqueda inversa (PTR)** asocian una dirección IP con un nombre de host y un **registro (NS)** define un servidor DNS para la zona. El servidor DNS utiliza estos registros de recurso para resolver las consultas de los hosts de su zona. 
 
 Cuando un **servidor DNS es autorizado** para una zona, es el responsable de los nombres de dominio para esa zona. En nuestro ejemplo, ns1.deaw.es es el servidor autorizado para la zona deaw.es. y en él se definen los nombres que cuelgan de deaw.es como por ejemplo, www.deaw.es, ftp.deaw.es, natos.deaw.es, etc. 
@@ -111,17 +112,19 @@ $ORIGIN deaw.es.
 ;A partir de aquí se añade deaw.es. a todos los nombres relativos
 ...
 ```
+
 ##### Formato general de los RR
 
 El formato con el que se introducen los RR en los archivos de zona es del siguiente estilo:
 
 ```linuxconfig
-Nombre de dominio		[TTL]		Clase		Tipo		Tipo-Dato
+Nombre de dominio        [TTL]        Clase        Tipo        Tipo-Dato
 ```
+
 Así por ejemplo, un RR quedaría tal que así:
 
 ```linuxconfig
-profesor.deaw.es	7200		IN		A		192.168.10.254
+profesor.deaw.es    7200        IN        A        192.168.10.254
 ```
 
 ##### Tipos de registros
@@ -129,116 +132,114 @@ profesor.deaw.es	7200		IN		A		192.168.10.254
 Aclarados los puntos anteriores, ahora sí vamos a ver los principales tipos de registros:
 
 + <u>**Registro SOA (Start Of Authority)**</u>: Especifica información autoritaria sobre una zona DNS, incluyendo el servidor de nombre primario, el email del administrador, el número de serial o versión de la zona, y varios temporizadores.
-
+  
     Ejemplo:
-
-    ```linuxconfig
-        deaw.es.   IN   SOA   ns1.deaw.es.   super.deaw.es. (
-                    20190425001	; serial
-                    604800	; refresh (7 días)
-                    86400	; retry (1 día)
-                    2419200	; expire (28 días)
-                    604800 )	; TTL negativo (7 días)
-        ...
-    ```
+  
+  ```linuxconfig
+      deaw.es.   IN   SOA   ns1.deaw.es.   super.deaw.es. (
+                  20190425001    ; serial
+                  604800    ; refresh (7 días)
+                  86400    ; retry (1 día)
+                  2419200    ; expire (28 días)
+                  604800 )    ; TTL negativo (7 días)
+      ...
+  ```
 
 + <u>**Registro NS (Name Server)**</u>:Cuando se delega la administración de subdominios en otros servidores, este registro indica cuáles son esos servidores autorizados.
-
-    ```linuxconfig
-    ...
-    deaw.es.	IN	NS	ns1.deaw.es.	;Servidor DNS maestro
-    deaw.es.	IN	NS	ns2.deaw.es.	;Servidor DNS esclavo
-    deaw.es.	IN	NS	dns.deaw.net.	;Servidor DNS esclavo
-    
-    ns1.deaw.es.	IN	A	192.168.10.20
-    ns2.deaw.es.	IN	A	192.168.10.21
-    
-    ;DELEGACIÓN
-    practicas.deaw.es.	IN	NS	ns1.practicas.deaw.es.
-    redes.deaw.es.	IN	NS	dns.deaw.net.
-    
-    ```
+  
+  ```linuxconfig
+  ...
+  deaw.es.    IN    NS    ns1.deaw.es.    ;Servidor DNS maestro
+  deaw.es.    IN    NS    ns2.deaw.es.    ;Servidor DNS esclavo
+  deaw.es.    IN    NS    dns.deaw.net.    ;Servidor DNS esclavo
+  
+  ns1.deaw.es.    IN    A    192.168.10.20
+  ns2.deaw.es.    IN    A    192.168.10.21
+  
+  ;DELEGACIÓN
+  practicas.deaw.es.    IN    NS    ns1.practicas.deaw.es.
+  redes.deaw.es.    IN    NS    dns.deaw.net.
+  ```
 
 + <u>**El registro A (Address)**</u>, también conocido como registro de dirección, establece una correspondencia entre un nombre de dominio completamente cualificado (FQDN) y una dirección IP versión 4.
   
-    ```linuxconfig
-    ...
-    ns1.deaw.es.	    IN	A	192.168.10.20
-    ns2.deaw.es.	    IN	A	192.168.10.21
-    natos.deaw.es.	IN	A	192.168.10.22
-    ...
-    ```
+  ```linuxconfig
+  ...
+  ns1.deaw.es.        IN    A    192.168.10.20
+  ns2.deaw.es.        IN    A    192.168.10.21
+  natos.deaw.es.    IN    A    192.168.10.22
+  ...
+  ```
 
 + El <u>**registro CNAME (Canonical Name)**</u> permite crear alias para nombres de dominio especificados en registros A.
-
-    ```linuxconfig
-    ...
-    natos.deaw.es.	IN	A	192.168.1.22
-    www.deaw.es.	    IN	CNAME	natos.deaw.es.
-    ftp.deaw.es.	    IN	CNAME	natos.deaw.es.
-    ...
-    ```
-
+  
+  ```linuxconfig
+  ...
+  natos.deaw.es.    IN    A    192.168.1.22
+  www.deaw.es.        IN    CNAME    natos.deaw.es.
+  ftp.deaw.es.        IN    CNAME    natos.deaw.es.
+  ...
+  ```
+  
     Un registro CNAME también puede apuntar a un nombre de otro dominio.
-
-    ```linuxconfig
-    ...
-    www.deaw.es.	IN	CNAME	www.deaw.com.
-    ...
-    ```
+  
+  ```linuxconfig
+  ...
+  www.deaw.es.    IN    CNAME    www.deaw.com.
+  ...
+  ```
 
 + El <u>**registro MX (Mail Exchange)**</u> permite definir los servidores encargados de la entrega de correo en el dominio y la prioridad entre ellos. Su sintáxis es la siguiente:
-
-    ```linuxconfig hl_lines="2 3"
-    ...
-    deaw.es.	IN	MX	10	mail1.deaw.es.
-    deaw.es.	IN	MX	20	mail2.deaw.es.
-    
-    mail1.deaw.es.	IN	A	192.168.1.100
-    mail2.deaw.es.	IN	A	192.168.1.101
-    ...
-    ```
+  
+  ```linuxconfig
+  ...
+  deaw.es.    IN    MX    10    mail1.deaw.es.
+  deaw.es.    IN    MX    20    mail2.deaw.es.
+  
+  mail1.deaw.es.    IN    A    192.168.1.100
+  mail2.deaw.es.    IN    A    192.168.1.101
+  ...
+  ```
 
 + El <u>**registro PTR (Pointer Record)**</u> establece una correspondencia entre direcciones IPv4 e IPv6 y nombres de dominio. Se utilizan en las zonas de resolución inversa.
-
+  
     En el caso de un bloque IPv4 de prefijo `/24`, por ejemplo el `192.168.1.0/24`, los registros PTR serían los siguientes:
-
-    ```linuxconfig
-    ...
-    20.1.168.192.in-addr.arpa.    IN    PTR    ns1.deaw.es.
-    21.1.168.192.in-addr.arpa.    IN    PTR    ns2.deaw.es.
-    22.1.168.192.in-addr.arpa.    IN    PTR    natos.deaw.es.
-    ...
-    ```
-
+  
+  ```linuxconfig
+  ...
+  20.1.168.192.in-addr.arpa.    IN    PTR    ns1.deaw.es.
+  21.1.168.192.in-addr.arpa.    IN    PTR    ns2.deaw.es.
+  22.1.168.192.in-addr.arpa.    IN    PTR    natos.deaw.es.
+  ...
+  ```
+  
     o lo que es lo mismo:
-    
-    ```linuxconfig
-    ...
-    20    IN    PTR    ns1.deaw.es.
-    21    IN    PTR    ns2.deaw.es.
-    22    IN    PTR    natos.deaw.es.
-    ...
-    ```
+  
+  ```linuxconfig
+  ...
+  20    IN    PTR    ns1.deaw.es.
+  21    IN    PTR    ns2.deaw.es.
+  22    IN    PTR    natos.deaw.es.
+  ...
+  ```
 
 + El <u>**registro TXT (plaint text)**</u> permite asociar información adicional a un dominio mediante múltiples cadenas de texto, con una longitud máxima de 255 caracteres cada una de ellas. Por ejemplo, utilizado para almacenar claves de cifrado.
+  
+  ```linuxconfig
+  ...
+  @    IN    TXT     "Servidor maestro de Servicios en Red"
+  @    IN    TXT     "Servidor maestro de Servicios en Red"
+  ```
 
-    ```linuxconfig
-    ...
-    @	IN	TXT 	"Servidor maestro de Servicios en Red"
-    @	IN	TXT 	"Servidor maestro de Servicios en Red"
-
-    ```
-    
 ## Tipos de servidores DNS
 
 ### Servidor maestro o primario
 
 Un servidor maestro o primario, define una o varias zonas de las que es autorizado. Sus archivos de zona son de lectura y escritura y es en ellos donde el administrador del servidor añade, modifica o elimina nombres de dominio.
 
-  + Si un cliente DNS u otro servidor DNS le pregunta por algún nombre de dominio **para el que es autorizado**, consulta con los ficheros de zona y responde a la pregunta.
++ Si un cliente DNS u otro servidor DNS le pregunta por algún nombre de dominio **para el que es autorizado**, consulta con los ficheros de zona y responde a la pregunta.
 
-  + Si un cliente DNS u otro servidor DNS le pregunta por algún nombre de dominio **para el que no es autorizado**, tendrá que preguntar a otros servidores DNS o responder que no conoce la respuesta.
++ Si un cliente DNS u otro servidor DNS le pregunta por algún nombre de dominio **para el que no es autorizado**, tendrá que preguntar a otros servidores DNS o responder que no conoce la respuesta.
 
 ### Servidor esclavo o secundario
 
@@ -249,10 +250,10 @@ Un servidor puede ser maestro para una o varias zonas y al mismo tiempo ser escl
 
 <u>**Pueden existir varios servidores esclavos para una misma zona**</u>. Las razones para esto suelen ser:
 
- + Reducir y repartir la carga entre varios servidores DNS.
- + Favorecer la tolerancia a fallos.
- + Ofrecer mayor rapidez.
-  
++ Reducir y repartir la carga entre varios servidores DNS.
++ Favorecer la tolerancia a fallos.
++ Ofrecer mayor rapidez.
+
 Lo ideal es que los servidores DNS para una misma zona estén ubicados en redes y localizaciones diferentes para evitar que, si ocurre algún problema no les afecte simultáneamente y deje sin servicio de resolución a los nombres de esa zona.
 
 ![](img/dns6.png)
@@ -265,26 +266,24 @@ Cuando un servidor DNS recibe una pregunta sobre un dominio para el cual no es a
 
 Un servidor DNS es solo cache (cache only server) cuando:
 
- + No tiene autoridad sobre ninguna zona.
- + Pregunta a otros servidores DNS para resolver las preguntas de los clientes DNS y las guarda en su memoria cache.
++ No tiene autoridad sobre ninguna zona.
++ Pregunta a otros servidores DNS para resolver las preguntas de los clientes DNS y las guarda en su memoria cache.
 
 En el siguiente gráfico se explica como dos clientes DNS hacen preguntas a un mismo servidor DNS que es autorizado para algunas zonas y además actúa como caché.
 
 ![](img/dns7.png)
 
-
 ### Servidor forwarder (reenviador)
 
 Cuando a un servidor DNS se le hace una pregunta sobre un nombre de dominio del que no dispone información (no es autorizado), este puede preguntar a otros servidores DNS. Simplificando, existen dos formas de procesar las consultas:
 
- + El servidor DNS procesa la consulta preguntando a diversos servidores DNS y empezando por los servidores DNS raíz. Consulta iterativa.
-
-    ![](img/dns8.png)
-
-
- + El servidor DNS reenvía la consulta a otro servidor DNS, denominado reenviador (forwarder), para que se encargue de resolverla. Consulta recursiva.
++ El servidor DNS procesa la consulta preguntando a diversos servidores DNS y empezando por los servidores DNS raíz. Consulta iterativa.
   
-    ![](img/dns9.png)
+   ![](img/dns8.png)
+
++ El servidor DNS reenvía la consulta a otro servidor DNS, denominado reenviador (forwarder), para que se encargue de resolverla. Consulta recursiva.
+  
+   ![](img/dns9.png)
 
 Visto lo anterior, un reenviador (forwarder) es un servidor DNS que otros servidores DNS designan para reenviarle consultas. Son utilizados para minimizar las consultas y el tráfico de peticiones DNS desde una red hacia Internet. Además permiten a los equipos locales utilizar su cache DNs para minimizar los tiempos de respuesta.
 
@@ -320,12 +319,12 @@ Una consulta recursiva es aquella en la que el servidor DNS da una respuesta com
 
 Una consulta iterativa es aquella en la que el servidor DNS proporciona una respuesta parcial. Existen cuatro posibles respuestas:
 
-  + Positivas: se devuelve información sobre el dominio consultado
-  + Negativas: no se puede resolver el nombre de dominio
-  + Referencia: el servidor DNS indica a otros servidores a los que se le puede consultar para resolver la pregunta
-  + Error: debido a un fallo en la red
++ Positivas: se devuelve información sobre el dominio consultado
++ Negativas: no se puede resolver el nombre de dominio
++ Referencia: el servidor DNS indica a otros servidores a los que se le puede consultar para resolver la pregunta
++ Error: debido a un fallo en la red
 
-### Ejemplos 
+### Ejemplos
 
 Completando la información de la imagen del primer ejemplo del apartado del **reenviador forwarder**:
 
@@ -361,13 +360,13 @@ No es obligatorio que la entidad que administra una zona de resolución directa 
 
 ```linuxconfig
 ...
-deaw.es.			IN	NS		ns1.deaw.es.
-ns1.deaw.es.		IN	A		192.168.1.20
-natos.deaw.es.	IN	A		192.168.1.21
-waor.deaw.es.		IN	A		192.168.1.22
-altea.deaw.es.		IN	A		192.168.1.23
-www.deaw.es.		IN	CNAME	natos.deaw.es.
-ftp.deaw.es.		IN	CNAME	waor.deaw.es.
+deaw.es.            IN    NS        ns1.deaw.es.
+ns1.deaw.es.        IN    A        192.168.1.20
+natos.deaw.es.    IN    A        192.168.1.21
+waor.deaw.es.        IN    A        192.168.1.22
+altea.deaw.es.        IN    A        192.168.1.23
+www.deaw.es.        IN    CNAME    natos.deaw.es.
+ftp.deaw.es.        IN    CNAME    waor.deaw.es.
 ...
 ```
 
@@ -375,11 +374,11 @@ Archivo de zona de resolución directa del dominio deaw.es.
 
 ```linuxconfig
 ...
-1.168.192.in-addr.arpa.		IN	NS	ns1.deaw.es.
-20.1.168.192.in-addr.arpa.	IN	PTR	ns1.deaw.es.
-21.1.168.192.in-addr.arpa.	IN	PTR	natos.deaw.es.
-22.1.168.192.in-addr.arpa.	IN	PTR	waor.deaw.es.
-123.1.168.192.in-addr.arpa.	IN	PTR	altea.deaw.es.
+1.168.192.in-addr.arpa.        IN    NS    ns1.deaw.es.
+20.1.168.192.in-addr.arpa.    IN    PTR    ns1.deaw.es.
+21.1.168.192.in-addr.arpa.    IN    PTR    natos.deaw.es.
+22.1.168.192.in-addr.arpa.    IN    PTR    waor.deaw.es.
+123.1.168.192.in-addr.arpa.    IN    PTR    altea.deaw.es.
 ...
 ```
 
@@ -411,6 +410,7 @@ En su momento se trató a nslookup como una aplicación “deprecated” u obsol
 ![](img/dns16.png)
 
 ### Dig
+
 Es un programa utilizado para preguntar a los servidores DNS.
 
 Herramienta utilizada para solucionar problemas de DNS gracias a su flexibilidad, facilidad de uso y claridad en la presentación de la información.
@@ -421,9 +421,11 @@ Este comando funciona tanto en sistemas operativos UNIX/Linux como en Windows
 ![](img/dns17.png)
 
 ### Host
+
 Host es una herramienta CLI sencilla y fácil de usar para realizar consultas DNS, que traducen nombres de dominio a direcciones IP y viceversa. También se utiliza para consultar los registros DNS de las zonas que almacenan los servidores DNS, probar y validar el servidor DNS y la conectividad a Internet, registros de correo no deseado y listas negras, diagnóstico de problemas en el servidor DNS...
 
-### Whois 
+### Whois
+
 Aunque no es una herramienta de diagnóstico DNS si que nos ofrece información sobre el registro del dominio.
 
 Whois es un protocolo que permite realizar consultas a bases de datos que contienen información; del usuario, empresa u organización que registra un nombre de dominio y/o una dirección IP en Internet. El protocolo whois se encapsula en TCP y solo especifica el intercambio de peticiones y respuestas, no el formato de datos a intercambiar. Por eso, los resultados de las consultas whois pueden variar dependiendo de la base de datos whois a la que se pregunte. 

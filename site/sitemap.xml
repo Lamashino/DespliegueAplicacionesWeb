@@ -36,11 +36,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Practica3.3-Cluster/</loc>
-         <lastmod>2024-05-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Practica3.3-Cluster2/</loc>
          <lastmod>2024-05-02</lastmod>
          <changefreq>daily</changefreq>
@@ -116,6 +111,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Tema4_teoria/</loc>
+         <lastmod>2024-05-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/cicd/</loc>
          <lastmod>2024-05-02</lastmod>
          <changefreq>daily</changefreq>
@@ -137,11 +137,6 @@
     </url>
     <url>
          <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/data/</loc>
-         <lastmod>2024-05-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/dns/</loc>
          <lastmod>2024-05-02</lastmod>
          <changefreq>daily</changefreq>
     </url>

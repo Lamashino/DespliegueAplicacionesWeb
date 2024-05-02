@@ -14,9 +14,9 @@ nav:
         - Tema3_teoria.md
       - Prácticas:
         - ... | Practica3.*.md
-    - Tema 4:
+    - Tema 4. DNS:
       - Teoría: 
-        - dns.md
+        - Tema4_teoria.md
       - Prácticas:
         - ... | Practica4.*.md
     - Tema 5:
