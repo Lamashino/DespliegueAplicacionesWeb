@@ -2,7 +2,7 @@
 title: 'Tema 2 - Arquitectura Web. Implantación y administración de servidores web'
 ---
 
-# **Arquitectura Web. Implantación y administración de servidores web**
+# Tema 2 - Arquitectura Web. Implantación y administración de servidores web
 
 ## Introducción
 
@@ -26,9 +26,7 @@ Cabe decir que no todas las peticiones consumen el mismo, y, por ejemplo, aquell
 
 Los servidores web sirven para almacenar contenidos de Internet y facilitar su disponibilidad de forma constante y segura. Cuando visitas una página web desde tu navegador, es en realidad un servidor web el que envía los componentes individuales de dicha página directamente a tu ordenador. Esto quiere decir que para que una página web sea accesible en cualquier momento, el servidor web debe estar permanentemente online. 
 
-
 ![](img/servodpr2.jpeg){: style="height:300px;width:550px"}
-
 
 Toda página accesible en Internet necesita un servidor especial para sus contenidos web. A menudo, las grandes empresas y organizaciones cuentan con un servidor web propio para disponer sus contenidos en Intranet e Internet. Sin embargo, la mayoría de administradores recurren a los centros de datos de proveedores de alojamiento web para sus proyectos. Independientemente de si tienes un servidor web propio o de si alquilas uno externo, siempre necesitarás un software para gestionar los datos de tu página y mantenerla actualizada. En este sentido, tienes la posibilidad de elegir entre varias soluciones de software para servidores web diseñadas para diferentes aplicaciones y sistemas operativos. 
 
@@ -52,12 +50,12 @@ La selección del equipo adecuado para el servidor y la decisión de si este deb
 
 Aunque su principal función es la transferencia de contenido web, muchos programas de servidor web ofrecen características adicionales: 
 
- Seguridad                  | Cifrado de la comunicación entre el servidor web y el cliente vía HTTPS                                                                   
-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------
- Autenticación del usuario  | Autenticación HTTP para áreas específicas de una aplicación web                                                                           
- Redirección                | Redirección de una solicitud de documento por medio de Rewrite Engine                                                                     
- Redirección                | Almacenamiento en caché de documentos dinámicos para la respuesta eficiente de solicitudes y para evitar una sobrecarga del servidor web  
- Asignación de cookies      | Envío y procesamiento de cookies HTTP    
+| Seguridad                 | Cifrado de la comunicación entre el servidor web y el cliente vía HTTPS                                                                  |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Autenticación del usuario | Autenticación HTTP para áreas específicas de una aplicación web                                                                          |
+| Redirección               | Redirección de una solicitud de documento por medio de Rewrite Engine                                                                    |
+| Redirección               | Almacenamiento en caché de documentos dinámicos para la respuesta eficiente de solicitudes y para evitar una sobrecarga del servidor web |
+| Asignación de cookies     | Envío y procesamiento de cookies HTTP                                                                                                    |
 
 Además del software del servidor, un host puede contener otro tipo de programas, como por ejemplo un servidor FTP para la carga de archivos o un servidor de base de datos para contenidos dinámicos. En general, existen diferentes tipos de servidores web que pueden ser utilizados para numerosos propósitos, por ejemplo, los servidores de correo, los servidores de juegos o los servidores proxy. 
 
@@ -75,7 +73,6 @@ Fue a raíz de la necesidad de disponer de múltiples grupos de científicos rep
 
 Es en los inicios del protocolo HTTP, a mediados del año 1990, cuando encontramos la versión 0.9. Esta versión tenía como única finalidad transferir datos por Internet en forma de páginas web escritas en lenguaje de marcado de hipertexto (HTML, HyperText Markup Language). A partir de la versión 1.0 del protocolo surgió la posibilidad de transferir mensajes con encabezados que describían el contenido de los mensajes. 
 
-
 ### Versiones
 
 #### La primera versión: HTTP/1
@@ -88,15 +85,15 @@ El servidor entonces no hacía más que transferir el archivo solicitado, de man
 
 HTTP/1.1 aclaró ambigüedades y añadió numerosas mejoras: 
 
- + Una conexión podía ser reutilizada, ahorrando así el tiempo de re-abrirla repetidas veces. 
++ Una conexión podía ser reutilizada, ahorrando así el tiempo de re-abrirla repetidas veces. 
 
- + Enrutamiento('Pipelining' en inglés) se añadió a la especificación, permitiendo realizar una segunda petición de datos, antes de que fuera respondida la primera, disminuyendo de este modo la latencia de la comunicación. 
++ Enrutamiento('Pipelining' en inglés) se añadió a la especificación, permitiendo realizar una segunda petición de datos, antes de que fuera respondida la primera, disminuyendo de este modo la latencia de la comunicación. 
 
- + Se permitió que las respuestas a peticiones, podían ser divididas en sub-partes. 
++ Se permitió que las respuestas a peticiones, podían ser divididas en sub-partes. 
 
- + La negociación de contenido, incluyendo el lenguaje, el tipo de codificación, o tipos, se añadieron a la especificación, permitiendo que servidor y cliente, acordasen el contenido más adecuado a intercambiarse. 
++ La negociación de contenido, incluyendo el lenguaje, el tipo de codificación, o tipos, se añadieron a la especificación, permitiendo que servidor y cliente, acordasen el contenido más adecuado a intercambiarse. 
 
- + Gracias a la cabecera, Host, pudo ser posible alojar varios dominios en la misma dirección IP. 
++ Gracias a la cabecera, Host, pudo ser posible alojar varios dominios en la misma dirección IP. 
 
 #### Un protocolo de mayor rendimiento HTTP/2
 
@@ -122,17 +119,17 @@ Gráficamente podemos resumir el proceso de comunicación HTTP como sigue:
 
 ![](img/funcionamiento-http.png)
 
-  1. Un usuario accede a una URL, seleccionando un enlace de un documento HTML o introduciéndola directamente en el campo correspondiente del cliente Web. 
+1. Un usuario accede a una URL, seleccionando un enlace de un documento HTML o introduciéndola directamente en el campo correspondiente del cliente Web. 
 
-  2. El cliente Web descodifica la URL, separando sus diferentes partes: el protocolo de acceso, la dirección DNS o IP del servidor, el posible puerto opcional (el valor por defecto es 80) y el objeto requerido del servidor. `http://direccion[:puerto][path]`
+2. El cliente Web descodifica la URL, separando sus diferentes partes: el protocolo de acceso, la dirección DNS o IP del servidor, el posible puerto opcional (el valor por defecto es 80) y el objeto requerido del servidor. `http://direccion[:puerto][path]`
+   
+   `Ejemplo: http://www.miweb.com/documento.html`
 
-    `Ejemplo: http://www.miweb.com/documento.html`
+3. Se abre una conexión TCP/IP con el servidor, llamando al puerto TCP correspondiente. En ese momento, se realiza la petición HTTP. Para ello, se envía el comando necesario (GET, POST, HEAD,...), la dirección del objeto requerido (el contenido de la URL que sigue a la dirección del servidor), la versión del protocolo HTTP empleada y un conjunto variable de información, que incluye datos sobre las capacidades del navegador (browser), datos opcionales para el servidor, etc. 
 
-  1. Se abre una conexión TCP/IP con el servidor, llamando al puerto TCP correspondiente. En ese momento, se realiza la petición HTTP. Para ello, se envía el comando necesario (GET, POST, HEAD,...), la dirección del objeto requerido (el contenido de la URL que sigue a la dirección del servidor), la versión del protocolo HTTP empleada y un conjunto variable de información, que incluye datos sobre las capacidades del navegador (browser), datos opcionales para el servidor, etc. 
+4. El servidor devuelve la respuesta al cliente. Consiste en un código de estado y el tipo de dato MIME de la información de retorno, seguido de la propia información. 
 
-  2. El servidor devuelve la respuesta al cliente. Consiste en un código de estado y el tipo de dato MIME de la información de retorno, seguido de la propia información. 
-
-  3. Se cierra la conexión TCP. Este proceso se repite en cada acceso al servidor HTTP. Por ejemplo, si se recoge un documento HTML en cuyo interior están insertadas 2 imágenes y 1 vídeo, el proceso anterior se repite cuatro veces, una para el documento HTML y tres más para los recursos (la dos imágenes y el vídeo). 
+5. Se cierra la conexión TCP. Este proceso se repite en cada acceso al servidor HTTP. Por ejemplo, si se recoge un documento HTML en cuyo interior están insertadas 2 imágenes y 1 vídeo, el proceso anterior se repite cuatro veces, una para el documento HTML y tres más para los recursos (la dos imágenes y el vídeo). 
 
 ### Comandos o métodos HTTP
 
@@ -143,9 +140,7 @@ HTTP define un conjunto de métodos de petición para indicar la acción que se 
 El estándar HTTP/1.0 recoge únicamente tres comandos, que representan las operaciones de recepción y envío de información y chequeo de estado: 
 
 * **GET**: se utiliza para solicitar cualquier tipo de información o recurso al servidor. Cada vez que se pulsa sobre un enlace o se teclea directamente a una URL se usa este comando. Como resultado, el servidor HTTP enviará el recurso correspondiente. 
-
 + **HEAD**: se utiliza para solicitar información sobre el recurso: su tamaño, su tipo, su fecha de modificación… Es usado por los gestores de cachés de páginas o los servidores proxy, para conocer cuándo es necesario actualizar la copia que se mantiene del recurso. Con HEAD se podrá comprobar la última fecha de modificación de un recurso antes de traer una nueva copia del mismo. 
-
 - **POST**: sirve para enviar información al servidor, por ejemplo, los datos contenidos en un formulario. El servidor pasará esta información a un proceso encargado de su tratamiento. 
 
 La versión 1.1 del protocolo incorpora unos pocos comandos más como son: OPTIONS, PUT, DELETE, TRACE y CONNECT. Veamos algunos de ellos: 
@@ -171,7 +166,6 @@ Una solicitud HTTP es un conjunto de líneas que el navegador envía al servidor
 + El cuerpo de la solicitud: es un conjunto de líneas opcionales que deben estar separadas de las líneas precedentes por una línea en blanco y que, por ejemplo, permiten la transmisión de datos al servidor de un formulario a través del método POST. 
 
 ![](img/request.png)
- 
 
 La sintaxis de una respuesta HTTP es un conjunto de líneas que el servidor envía al navegador. Incluye: 
 
@@ -254,29 +248,29 @@ Mientras evolucionaba la red, y la necesidad de exprimir hasta la última gota d
 ### Razones para usar Nginx
 
 1. <u>Es ligero</u>
-
+   
     Nginx reduce el consumo de RAM. 
 
 2. <u>Es multiplataforma y fácil de instalar </u>
-
+   
     La mayoría de las grandes distribuciones de GNU/Linux, tienen Nginx en sus repositorios. 
 
 3. <u>¡Se puede usar junto a Apache! </u>
-
+   
     Sí, como lo lees, algunas empresas solo usan Nginx para servir contenido estático y Apache para el contenido dinámico. 
 
 4. <u>Caché</u>
-
+   
     Puedes usar Nginx como caché, con algo de configuración, permitiendo mejorar la eficiencia de tu aplicación sin tocar la programación de la misma. 
 
 5. <u>Balanceador de carga </u>
-
+   
     Este servidor web puede funcionar como balanceador de carga, distribuyendo el tráfico entre varios servidores, permitiendo mayor escalabilidad. 
 
 6. <u>Soporte comunitario y profesional </u>
-
+   
     Nginx, Inc está detrás del desarrollo de Nginx, además de la comunidad en general, permitiendo tener un soporte tanto profesional como comunitario. 
 
 7. <u>Compatibilidad con las aplicaciones web más populares</u>
-
+   
     Nginx es compatible con una gran cantidad de CMS existentes en el mercado, y hay un muchos tutoriales y documentación para instalar estos bajo Nginx, como por ejemplo: Wordpress, Joomla, Drupal, phpBB ¡y más! 

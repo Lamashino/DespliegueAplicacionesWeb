@@ -54,6 +54,7 @@ app.listen(port, () => {
           console.log(`Aplicación escuchando en puerto ${port}`);
 });
 ```
+
 Se trata de una aplicación un tanto *prefabricada* en el sentido de que es algo que jamás encontraríamos en el mundo real. No obstante, nos servirá para ilustrar nuestro propósito.
 
 Esta aplicación contiene dos rutas, una ruta raíz `/` que devuelve la cadena `Hello World!` y otra ruta `/api/n` donde se toma `n` como parámetro y va realizando una operación de suma (el bucle for) cuyo resultado acumula en la variable `count` que se muestra al final.
@@ -77,7 +78,6 @@ Hagamos otra simple comprobación para valores de `n` más grandes. Desplegada e
 ![](img/no-cluster-1.png)
 
 Mientras esta solicitud que tarda unos segundos se está procesando, acceded en otra pestaña del navegador a `http://IP-maq-virtual:3000` o a `http://IP-maq-virtual:3000/api/n` siendo `n` el valor que le queráis dar.
-
 
 ![](img/no-cluster-2.png)
 
@@ -119,6 +119,7 @@ cluster.on("exit", (worker, code, signal) => {
           cluster.fork();
 });
 ```
+
 Esta aplicación hace lo mismo que antes pero esta vez estamos generando varios procesos secundarios que compartirán el puerto 3000 y que podrán manejar las solicitudes enviadas a este puerto. Los procesos de trabajo se generan utilizando el método `child_process.fork()`. El método devuelve un objeto `ChildProcess` que tiene un canal de comunicación incorporado que permite que los mensajes se transmitan entre el hijo y su padre.
 
 Creamos tantos procesos secundarios como núcleos de CPU hay en la máquina en la que se ejecuta la aplicación. Se recomienda no crear más *workers* que núcleos lógicos en la computadora, ya que esto puede causar una sobrecarga en términos de costos de programación. Esto sucede porque el sistema tendrá que programar todos los procesos creados para que se vayan ejecutando por turnos en los núcleos.
@@ -213,7 +214,7 @@ pm2 start nombre_aplicacion_sin_cluster.js -i 0
 Donde:
 
 + `-i` <número workers> le indicará a `PM2` que inicie la aplicación en `cluster_mode` (a diferencia de `fork_mode`).
-
+  
     Si <número workers>se establece a 0, `PM2` generará automáticamente tantos *workers* como núcleos de CPU haya.
 
 Y así, nuestra aplicación se ejecuta en modo de clúster, sin necesidad de cambios de código. 
@@ -236,7 +237,6 @@ pm2 stop app.js
 La aplicación se desconectará y la salida por terminal mostrará todos los procesos con un estado `stopped`.
 
 ![](img/pm2_2.png)
-
 
 En vez de tener pasar siempre las configuraciones cuando ejecuta la aplicación con `pm2 start app.js -i 0`, podríamos facilitarnos la tarea y guardarlas en un archivo de configuración separado, llamado [Ecosystem](https://pm2.keymetrics.io/docs/usage/application-declaration/). 
 
@@ -265,11 +265,11 @@ Al configurar `exec_mode` con el valor `cluster`, le indica a `PM2` que balancee
 
 La opción `-i` o `instances` se puede establecer con los siguientes valores:
 
-  + `0` o `max`(en desuso) para "repartir" la aplicación entre todas las CPU
++ `0` o `max`(en desuso) para "repartir" la aplicación entre todas las CPU
 
-  + `-1` para "repartir" la aplicación en todas las CPU - 1
++ `-1` para "repartir" la aplicación en todas las CPU - 1
 
-  + `número` para difundir la aplicación a través de un número concreto de CPU
++ `número` para difundir la aplicación a través de un número concreto de CPU
 
 Ahora podemos ejecutar la aplicación con:
 
@@ -287,9 +287,9 @@ $ pm2 restart nombre_aplicacion
 $ pm2 reload nombre_aplicacion
 $ pm2 stop nombre_aplicacion
 $ pm2 delete nombre_aplicacion
- 
+
 # Cuando usemos el archivo Ecosystem:
- 
+
 $ pm2 [start|restart|reload|stop|delete] ecosystem.config.js
 ```
 
@@ -306,7 +306,6 @@ También puede verificar el estado, los registros y las métricas de las aplicac
     pm2 monit
     ```
 
-
 !!!warning
     Documenta la realización de toda esta práctica adecuadamente, con las explicaciones y justificaciones necesarias, las respuestas a las preguntas planteadas y las capturas de pantalla pertinentes.
 
@@ -317,7 +316,6 @@ Fijáos en las siguientes imágenes:
 ![](img/loadtest_no_cluster_3.png)
 
 ![](img/loadtest_cluster_3.png)
-
 
 La primera imagen ilustra los resultados de unas pruebas de carga sobre la aplicación sin clúster y la segunda sobre la aplicación clusterizada.
 
@@ -331,11 +329,11 @@ La primera imagen ilustra los resultados de unas pruebas de carga sobre la aplic
 
 ## Evaluación
 
-| Criterio                                                                                                                                      | Puntuación   |
-|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------|
-| Pruebas correctas y bien documentadas de despliegue de la aplicación **sin** cluster      | **2 puntos**      |
-| Pruebas correctas y bien documentadas de despliegue de la aplicación **con** cluster       | **2 puntos**  |
-| Pruebas correctas y bien documentadas de todas las opciones con loadtest         | **2 puntos**  |
-| Pruebas correctas y bien documentadas de todas las opciones con PM2              | **2 puntos**  |                                                                                                     | 
-| Respuestas correctas a las cuestiones            | **1 puntos**     |
-| Se ha prestado especial atención al formato del documento, utilizando la plantilla actualizada y haciendo un correcto uso del lenguaje técnico | **1 puntos**     |
+| Criterio                                                                                                                                       | Puntuación   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Pruebas correctas y bien documentadas de despliegue de la aplicación **sin** cluster                                                           | **2 puntos** |
+| Pruebas correctas y bien documentadas de despliegue de la aplicación **con** cluster                                                           | **2 puntos** |
+| Pruebas correctas y bien documentadas de todas las opciones con loadtest                                                                       | **2 puntos** |
+| Pruebas correctas y bien documentadas de todas las opciones con PM2                                                                            | **2 puntos** |
+| Respuestas correctas a las cuestiones                                                                                                          | **1 puntos** |
+| Se ha prestado especial atención al formato del documento, utilizando la plantilla actualizada y haciendo un correcto uso del lenguaje técnico | **1 puntos** |

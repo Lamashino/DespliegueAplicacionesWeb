@@ -2,7 +2,7 @@
 title: 'Tema 1 - Introducción'
 ---
 
-# Introducción
+# Tema 1 - Introducción
 
 En este módulo vamos a simular escenarios reales donde apenas trabajaremos en local, en nuestro propio ordenador. Simularemos, mediante una máquina virtual que es en la que realmente trabajaremos, que todos nuestros despliegues ocurren en una máquina remota, tal y como ocurre en la realidad.
 
@@ -82,25 +82,23 @@ La *clave privada* sólo la debe conocer su dueño.
 
 <u>**Funcionamiento:**</u>
 
- 1. El emisor cifra un mensaje con la clave pública del receptor
- 2. El receptor recibe el mensaje y es el único que podrá descifrarlo porque es el único que posee la clave cifrada asociada
+1. El emisor cifra un mensaje con la clave pública del receptor
+2. El receptor recibe el mensaje y es el único que podrá descifrarlo porque es el único que posee la clave cifrada asociada
 
 **Ventajas**
 
-  + No se necesita un nuevo canal independiente y seguro para transmitir la clave
++ No se necesita un nuevo canal independiente y seguro para transmitir la clave
 
 **Inconvenientes**
 
-  + Son más lentos que los cifrados simétricos
-  + Hay que proteger muy bien la clave privada y tenerla siempre disponible para poder descifrar los mensajes (no es una contraseña)
-  + Hay que asegurarse de que la clave pública es de quién dice ser y no de un impostor que se esté haciendo pasar por él
-
++ Son más lentos que los cifrados simétricos
++ Hay que proteger muy bien la clave privada y tenerla siempre disponible para poder descifrar los mensajes (no es una contraseña)
++ Hay que asegurarse de que la clave pública es de quién dice ser y no de un impostor que se esté haciendo pasar por él
 
 !!!note "Nota"
     Nosotros, para conectarnos por primera vez por SSH y comprobar la conectividad, utilizaremos el cifrado simétrico (una contraseña).
 
     Tras ello, simulando un entorno real que aporte comodidad (no introducir contraseña cada vez que hagamos *login*) pero también y sobre todo, por seguridad, utilizaremos cifrado asimétrico. Esto es, un par de claves.
-
 
 ## Referencias
 

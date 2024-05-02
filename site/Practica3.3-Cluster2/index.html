@@ -22,7 +22,7 @@
     
     
       
-        <title>(ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express - Despliegue de aplicaciones web</title>
+        <title>Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express - Despliegue de aplicaciones web</title>
       
     
     
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              (ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
+              Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
             
           </span>
         </div>
@@ -417,7 +417,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 2
+    Tema 2. Arquitectura Web
   </span>
   
 
@@ -427,7 +427,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Tema 2
+            Tema 2. Arquitectura Web
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -473,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ArqWeb/" class="md-nav__link">
+      <a href="../Tema2_teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -589,7 +589,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 3
+    Tema 3. Servidores de aplicaciones
   </span>
   
 
@@ -599,7 +599,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Tema 3
+            Tema 3. Servidores de aplicaciones
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -645,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ServAplic/" class="md-nav__link">
+      <a href="../Tema3_teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -787,7 +787,7 @@
           
   
   <span class="md-ellipsis">
-    (ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
+    Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
   </span>
   
 
@@ -798,7 +798,7 @@
         
   
   <span class="md-ellipsis">
-    (ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
+    Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
   </span>
   
 
@@ -2280,19 +2280,19 @@
 <p>Cuando lo acompañamos con <code>-y</code>, le estamos diciendo a NPM que acepte todas las opciones por defecto.</p>
 </div>
 <p>Al <strong>package.json</strong> generado hemos de añadirle las siguiente línea:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span>
 </code></pre></div>
-Tal y como podéis ver en la imagen (cuidado con la <em>coma</em>):</p>
+<p>Tal y como podéis ver en la imagen (cuidado con la <em>coma</em>):</p>
 <p><img alt="" src="../img/%20cluster-nuevo1.png" /></p>
 <p>Y tras esto, instalaremos las herramientas que nos harán falta en el resto de la práctica, si es que no las teníamos ya:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install<span class="w"> </span>express
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install<span class="w"> </span>express
 </code></pre></div>
-Y de forma global:</p>
+<p>Y de forma global:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>loadtest<span class="w"> </span>pm2
 </code></pre></div>
 <p>Y ahora creemos una aplicación sencilla que ejecutará una tarea intensiva de CPU cada vez que la ejecute el usuario. Este pequeño programa aún no utilizará el módulo <code>cluster</code> para que de esta manera sólo se ejecute una sola instancia en la CPU cada vez que se lance. Más tarde la compararemos con otra utilizando dicho módulo.</p>
 <p>Cread en el directorio el siguiente archivo:</p>
-<div class="highlight"><span class="filename">index.js</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">//Se importa el paquete &quot;express&quot;, se establece el p uerto a 3000 y se crea la variable app como una instancia de express</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">//Se importa el paquete &quot;express&quot;, se establece el p uerto a 3000 y se crea la variable app como una instancia de express</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;express&quot;</span><span class="p">;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
@@ -2342,7 +2342,7 @@ Y de forma global:</p>
 <h4 id="ahora-con-mas-cluster">¡Ahora con más clúster!</h4>
 <p>Ahora usaremos el módulo de clúster en la aplicación para generar algunos procesos secundarios y ver cómo eso mejora las cosas.</p>
 <p>Crearemos un nuevo archivo llamado <code>primary.js</code>que será la aplicación anterior utilizando el módulo cluster. A continuación se muestra el archivo que contiene la lógica de los cluster:</p>
-<div class="highlight"><span class="filename">primary.js</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">//importamos módulos cluster y os y además todo lo necesario para conocer la ubicación del &quot;index.js&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">//importamos módulos cluster y os y además todo lo necesario para conocer la ubicación del &quot;index.js&quot;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">cluster</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;cluster&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">import</span><span class="w"> </span><span class="nx">os</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;os&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dirname</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;path&quot;</span><span class="p">;</span>

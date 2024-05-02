@@ -11,7 +11,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/ArqWeb/</loc>
+         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/%28old%29Practica3.3-Cluster/</loc>
          <lastmod>2024-05-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -101,12 +101,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/ServAplic/</loc>
+         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Tema1_teoria/</loc>
          <lastmod>2024-05-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Tema1_teoria/</loc>
+         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Tema2_teoria/</loc>
+         <lastmod>2024-05-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://lamashino.github.io/DespliegueAplicacionesWeb/Tema3_teoria/</loc>
          <lastmod>2024-05-02</lastmod>
          <changefreq>daily</changefreq>
     </url>

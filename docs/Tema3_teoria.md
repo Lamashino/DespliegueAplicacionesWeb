@@ -2,10 +2,9 @@
 title: 'Tema 3 - Servidores de aplicaciones'
 ---
 
-# **Servidores de aplicaciones**
+# **Tema 3 - Servidores de aplicaciones**
 
 ## Introducción
-
 
 Un servidor de aplicaciones es un marco mixto de software que permite tanto la creación de aplicaciones web como un entorno de servidor para ejecutarlas.
 
@@ -19,7 +18,7 @@ Es habitual que se utilice junto con un servidor web o que contenga un servidor 
 
 Los servidores de aplicaciones también pueden contener sus propias interfaces gráficas de usuario para su gestión a través de PC, pero también pueden ocuparse de sus propios recursos, así como del procesamiento de transacciones, la mensajería, la agrupación de recursos y conexiones, y la realización de tareas de seguridad.
 
-## Servidor de aplicaciones 
+## Servidor de aplicaciones
 
 Las aplicaciones vienen en todas las formas, tamaños y casos de uso. En un mundo en el que dependemos de una serie de procesos empresariales críticos, los servidores de aplicaciones son los ordenadores de gran potencia que proporcionan recursos de aplicaciones a los usuarios y clientes web.
 
@@ -27,15 +26,14 @@ Los servidores de aplicaciones, como ya hemos dicho, se sitúan física o virtua
 
 ## Terminología de los servidores de aplicaciones
 
-|    Término         |       Descripción                               |
-| ----------- | ------------------------------------ |
-|  **Servidor web**  | Responsable de almacenar, procesar y entregar los datos de E/S de las páginas web |
-| **Cliente web**   |  Punto final que intenta acceder a los recursos de la web o de la aplicación |
-| **HTTPS**   |  Protocolo de comunicación seguro entre el servidor web y los clientes web |
-|  **JSON**  | Lenguaje para el intercambio entre los servidores web y de aplicaciones |
-|  **Lógica de negocio**  | Reglas para el almacenamiento de datos y la transferencia de recursos de la aplicación |
-|  **Aplicación**  | Un programa de software o un sitio web unido a una base de datos |
-
+| Término               | Descripción                                                                            |
+| --------------------- | -------------------------------------------------------------------------------------- |
+| **Servidor web**      | Responsable de almacenar, procesar y entregar los datos de E/S de las páginas web      |
+| **Cliente web**       | Punto final que intenta acceder a los recursos de la web o de la aplicación            |
+| **HTTPS**             | Protocolo de comunicación seguro entre el servidor web y los clientes web              |
+| **JSON**              | Lenguaje para el intercambio entre los servidores web y de aplicaciones                |
+| **Lógica de negocio** | Reglas para el almacenamiento de datos y la transferencia de recursos de la aplicación |
+| **Aplicación**        | Un programa de software o un sitio web unido a una base de datos                       |
 
 ## El papel del servidor de aplicaciones en la arquitectura de servicios
 
@@ -47,7 +45,6 @@ Miles de millones de clientes web hacen peticiones HTTP cada día, esperando un 
 
 Los servidores web se encargan de servir a los clientes web peticiones HTTP con respuestas HTTP. A diferencia de los servidores de aplicaciones, el diseño del servidor web es lo suficientemente ligero como para procesar las solicitudes de datos estáticos de varias aplicaciones (o sitios web), manteniendo la seguridad. Las peticiones dinámicas, a menudo en forma de aplicaciones, requieren asistencia adicional.
 
-
 ### Los servidores de aplicaciones optimizan el tráfico y añaden seguridad
 
 Para conseguir una agilidad óptima del servidor web, no sirve gestionar tanto las peticiones HTTP de los clientes web como pasar o almacenar recursos de múltiples sitios web. Los servidores de aplicaciones llenan este vacío con un diseño de alta potencia construido para manejar las solicitudes de contenido web dinámico.
@@ -58,14 +55,14 @@ Las organizaciones pueden proteger aún más sus datos con un servidor proxy inv
 
 ![a](img/serv_apl.png)
 
-### ¿Cómo funcionan los servidores de aplicaciones? 
+### ¿Cómo funcionan los servidores de aplicaciones?
 
 Pongamos como ejemplo un servidor de aplicaciones Java.
 
 !!! info "**¿Qué son los servlets?**" 
 
     Un servlet es un programa Java que se ejecuta en un servidor Web y construye o sirve páginas web. De esta forma se pueden construir páginas dinámicas, basadas en diferentes fuentes variables: datos proporcionados por el usuario, fuentes de información variable (páginas de noticias, por ejemplo), o programas que extraigan información de bases de datos.
-
+    
     Comparado con un CGI, un servlet es más sencillo de utilizar, más eficiente (se arranca un hilo por cada petición y no un proceso entero), más potente y portable. Con los servlets podremos, entre otras cosas, procesar, sincronizar y coordinar múltiples peticiones de clientes, reenviar peticiones a otros servlets o a otros servidores u otros.
 
 Como la mayoría de los servidores de hoy en día, los servidores de aplicaciones contienen características de seguridad, transacciones, servicios, clustering, diagnósticos y bases de datos. En lo que se diferencian los servidores de aplicaciones es en su capacidad para procesar peticiones de servlets (programas Java) desde un servidor web.
@@ -84,19 +81,18 @@ Al recibir una solicitud de servlet de un servidor web, el servidor de aplicacio
 
 ![](img/capas.webp)
 
-|   |Servidor de aplicaciones   | Servidor web   |
-|---|---|---|
-|  ***Diseñado para*** | Sirve peticiones HTTP y de otra lógica de negocio  |  Sirve peticiones HTTP |
-|  ***Almacena y proporciona*** |  Lógica de negocio |  Contenido web estático |
-|  ***La utilización de los recursos es*** | Pesada  |  Ligera  |
-| ***Soporta***  | Transacciones distribuidas y Enterprise JavaBeans (EJB)  | Servlets, Java Server Pages (JSP) y JSON  |
+|                                         | Servidor de aplicaciones                                | Servidor web                             |
+| --------------------------------------- | ------------------------------------------------------- | ---------------------------------------- |
+| ***Diseñado para***                     | Sirve peticiones HTTP y de otra lógica de negocio       | Sirve peticiones HTTP                    |
+| ***Almacena y proporciona***            | Lógica de negocio                                       | Contenido web estático                   |
+| ***La utilización de los recursos es*** | Pesada                                                  | Ligera                                   |
+| ***Soporta***                           | Transacciones distribuidas y Enterprise JavaBeans (EJB) | Servlets, Java Server Pages (JSP) y JSON |
 
 ## Servidores de aplicaciones en la década de 2020
 
 El mercado de los servidores de aplicaciones espera crecer a una [CAGR](https://es.wikipedia.org/wiki/Tasa_de_crecimiento_anual_compuesto) del 13,2%, pasando de cerca de 17.000 millones de dólares en 2020 a 41.000 millones en 2026. El crecimiento continuo no es una sorpresa, ya que la conectividad a Internet y la dependencia de las aplicaciones crece.
 
 La migración a las plataformas y servicios en la nube y el auge de los dispositivos IoT son dos impulsores clave en el mercado de infraestructura de aplicaciones y middleware moderno. A esto hay que añadir un movimiento hacia las políticas BYOD (Bring Your Own Device) y una fuerza de trabajo remota que depende de una mayor conectividad y eficiencia operativa.
-
 
 ## Servidores de aplicaciones: El mejor amigo de un servidor web
 
@@ -120,7 +116,6 @@ En la imagen anterior se muestra una forma muy simplificada y clásica de maneja
 
 Al utilizar múltiples entornos se obtiene una lista de ventajas - la principal es que se pueden hacer cambios sin que afecten a su sitio web en vivo. Una vez que los cambios se hacen, **se prueban** y están listos para ser pasados a producción, el proceso de despliegue se encarga del resto.
 
-
 ### ¿De qué pasos consta el proceso despliegue?
 
 El flujo del proceso de despliegue consta de 5 pasos: Planificación, desarrollo, pruebas, despliegue y supervisión.
@@ -129,52 +124,48 @@ A continuación nos adentraremos en cada uno de los 5 pasos, pero antes una nota
 
 El flujo del proceso de despliegue que aparece a continuación cubre los aspectos fundamentales, que se dividen en 5 pasos. Esto no significa que sea la única manera de hacerlo - podría haber un proceso mejor para cada caso. Es una simplificación para que cubra las partes más importantes.
 
-
 1. **Recordar tener un plan de despliegue de software**
-
+   
     Para asegurarse de que el proceso de despliegue se desarrolle con la mayor fluidez posible, lo mejor es tener un plan de despliegue que se siga en todo momento. Al tener un plan nos aseguramos de que todo se haga de la misma manera cada vez que se realicen cambios. Esto es especialmente útil cuando varios usuarios trabajan en el mismo proyecto.
-
+   
     Un plan de despliegue debe incluir reglas sobre cuándo desplegar desde los entornos locales a los sitios de desarrollo o de puesta en escena, así como horarios para cuando los nuevos cambios pueden ir a un entorno en vivo. Al tener un plan establecido, se reduce el riesgo de conflictos entre los diferentes cambios y se asegura que el proceso de despliegue sea lo más fácil y fluido posible. Si se está trabajando en un proyecto de código abierto, también da la oportunidad de hacer Release Candidates y dejar que la comunidad lo pruebe para detectar cualquier error que se pueda haber pasado por alto.
-
+   
     Además de un plan general, también es importante planificar cada uno de los cambios que se vaya a realizar. Este proceso será muy rápido para los cambios menores, pero debería ser mucho más extenso para los grandes cambios. Si se planifica con mucha antelación, se estará mucho más preparado para tener un proceso de despliegue sin problemas.
 
- 
 2. **El desarrollo propiamente dicho**
-
+   
     Una vez que se tenga el plan en marcha, es el momento de realizar el desarrollo real. Para garantizar que cualquier desarrollo pueda realizarse simultáneamente y sin romper nada, es importante trabajar únicamente en entornos locales o de desarrollo. Una vez que el proceso de desarrollo está hecho, es el momento de empezar a probar y desplegar los cambios a través de la configuración de su entorno.
- 
+
 3. **Probar los cambios**
-
+   
     Probar los cambios es crucial para garantizar que no haya errores en el entorno de producción final. Pero las pruebas no pueden completarse sin desplegar los cambios en nuevos entornos. 
-
+   
     Una vez que se haya comprobado que todos los cambios funcionan en el entorno local o de desarrollo, es el momento de desplegar los cambios en el siguiente entorno. Esto debe hacerse hasta el entorno de preproducción, donde se deben realizar las pruebas finales de control de calidad. Si todo está correctamente probado y funciona en un entorno parecido al entorno real, es el momento de desplegarlo en vivo.
-
+   
     Si se descubren errores por el camino en cualquier entorno, es importante tener un plan para manejarlos. Por lo general, cualquier cambio que no pase las pruebas en el entorno de ensayo debe ser enviado de nuevo a la fase de desarrollo y -una vez corregido- volver a trabajar en los entornos.
 
- 
 4. **Desplegar los cambios en el entorno real**
-
+   
     Una vez que se han realizado todas las pruebas en los entornos anteriores y se han corregido los errores, es el momento de desplegar los cambios en el entorno real. Esto debería ser algo bastante seguro, pero todos los que han trabajado en el desarrollo de software saben que algo puede salir mal.
-
+   
     Así que, aunque es fácil detenerse aquí, es importante incluir el último paso del proceso: la monitorización.
 
- 
 5. **Supervisar los cambios**
-
+   
     Una vez que los nuevos cambios estén en marcha y los usuarios reales utilicen activamente el sitio web o la aplicación, es importante supervisar que todo funcione según lo previsto. Independientemente de la planificación realizada, existe la posibilidad de que los usuarios se encuentren con problemas o realicen acciones que usted no había previsto durante la planificación y el desarrollo.
-
+   
     Un buen consejo para la monitorización es planificar los lanzamientos para los momentos en los que la menor cantidad de usuarios lo noten y en los que se tengan recursos de desarrollo listos en caso de que haya que arreglar algo. De este modo, el número de usuarios afectados por cualquier error será mínimo y se tendrá gente preparada para arreglarlo o revertir los cambios si es necesario. 
-
+   
     Si se han de revertir los cambios, es importante mantener la calma y tener un proceso para manejarlo con la misma minuciosidad con la que se manejan los despliegues.
 
 ## Diferentes tipos de despliegue
 
 Cuando se trata del tipo de despliegue, a menudo se divide en dos partes. Por lo general, se dividirá entre metadatos y contenido, ya que estos tienen diferentes impactos en un nuevo entorno y deben ser manejados de manera diferente.
- 
+
 ### Despliegue de metadatos
 
 Los metadatos incluyen los cambios en el código, las plantillas, las hojas de estilo, los archivos, etc. Estos cambios a menudo requerirán una comprobación de validación entre entornos para ver si tiene algún conflicto imprevisto que deba resolverse. Muchas herramientas de despliegue incluyen comprobaciones de coherencia y ayudan a guiarte en caso de conflictos.
- 
+
 ### Despliegue de contenidos
 
 El contenido, como el texto, las imágenes y los vídeos, se maneja de forma diferente durante el despliegue, ya que es menos complicado moverlo entre entornos que los metadatos. Por esa razón, a menudo verás que las herramientas de despliegue hacen que el despliegue de contenido sea accesible para los editores de contenido y no sólo para los desarrolladores. De esta manera, un editor de contenidos no depende de un desarrollador cuando se trata de enviar nuevos contenidos a un entorno activo.
@@ -185,7 +176,6 @@ Cuando se trabaja con entornos de despliegue, es importante, como se ha menciona
 
 Se ha de tener en cuenta que las siguientes prácticas recomendadas se refieren principalmente al desarrollo de software y de la web. Si  se están llevando a cabo otros tipos de desarrollo puede haber otras cosas a considerar en el flujo de trabajo de despliegue.
 
- 
 #### Utilizar Git
 
 Esto puede parecer obvio, pero tener un sistema de control de versiones es inestimable para cualquier flujo de trabajo de despliegue. Sin él, es probable que se produzcan errores si se trabaja en equipo.
@@ -218,7 +208,6 @@ Pero antes de hacer el despliegue final, es importante hacer una revisión final
 
 Incluso después de las pruebas exhaustivas y la garantía de calidad, las cosas pueden ir mal tan pronto como se llega al entorno real. Y una vez que eso sucede, a menudo puede ser muy estresante implementar correcciones rápidas o hacer una reversión completa de la versión. Por lo general, se querrá evitar esto a toda costa, por lo que es muy recomendable hacer una revisión final del código antes de pulsar el botón de despliegue.
 
-
 #### Considerar tener grupos de usuarios con diferentes permisos
 
 Mientras que cualquier desarrollador debe ser capaz de empujar los cambios a los entornos de test, puede ser una buena idea para restringir quién puede desplegarlos en vivo.
@@ -241,13 +230,12 @@ También hay que comprobar si lo que se ha roto es una característica existente
 
 Así que en lugar de entrar en pánico, se debe tener un plan preparado y respirar hondo antes de ponerse a trabajar en la búsqueda de una solución. Puede parecer sencillo, pero puede ayudar a salir de una mala situación mucho más rápido que si lanzándose directamente.
 
-
 #### ¿A qué hora del día se deben desplegar los cambios?
 
 En caso de que algo se rompa al desplegar en el entorno de producción, es importante encontrar el mejor momento para hacerlo. Y aunque este momento varía mucho de un proyecto a otro, hay dos preguntas que pueden hacerse para determinar cuándo desplegar los cambios:
 
-   1. ¿Cuándo tiene la menor cantidad de usuarios activos?
-   2. ¿Cuándo tiene a alguien preparado para supervisar y solucionar los problemas después del despliegue?
+1. ¿Cuándo tiene la menor cantidad de usuarios activos?
+2. ¿Cuándo tiene a alguien preparado para supervisar y solucionar los problemas después del despliegue?
 
 #### ¿Cuándo tiene el menor número de usuarios activos?
 
@@ -270,9 +258,8 @@ Es por este motivo que en muchas empresas se trabaja con guardias rotativas para
 !!!info warning
         **Aunque no hay un momento perfecto para el despliegue, definitivamente hay momentos que son mejores que otros.**
 
-
 ### ¿Cuáles son las ventajas del despliegue y de los entornos múltiples?
- 
+
 #### Reducción del riesgo de romper un sitio web en producción
 
 Una de las principales razones para utilizar múltiples entornos y confiar en el despliegue es reducir el riesgo de que los cambios tengan un impacto negativo en un sitio web en vivo. Mientras que los cambios menores se pueden hacer fácilmente directamente en un sitio web en vivo, los cambios más grandes se pueden hacer en entornos separados sin el riesgo de romper nada en el entorno en vivo.
@@ -287,7 +274,6 @@ Si se trabaja en un entorno local también existe la ventaja de que los cambios 
 
 A la hora de desplegar los cambios, también se ahorrará tiempo, ya que se podrán realizar todos los cambios al mismo tiempo en lugar de tener que hacerlo en varios pasos más pequeños.
 
- 
 #### El contenido sensible al tiempo es más fácil de gestionar
 
 Si se están llevando a cabo campañas que son sensibles al tiempo y que sólo pueden ponerse en marcha a partir de un determinado día u hora, entonces la ejecución de múltiples entornos y el uso del despliegue pueden ahorrar una gran cantidad de estrés.
@@ -296,7 +282,6 @@ Al crear todo el contenido en un entorno de puesta en escena/preprod (o similar)
 
 Y si la herramienta de despliegue incluye roles de usuario con configuración de permisos, es posible que un editor de contenidos haga todo esto -incluyendo el despliegue de los cambios- sin involucrar a un desarrollador en el proceso.
 
- 
 ## Despliegue de aplicaciones Java
 
 ### Introducción
@@ -335,7 +320,6 @@ Los archivos WAR, son un tipo especial de JAR utilizado para distribuir los arte
 
 El empaquetamiento en archivos WAR es algo estándar, pero no así el proceso de despliegue, que es dependiente del servidor. No obstante, la mayoría de servidores JavaEE funcionan en este aspecto de modo similar: permiten desplegar las aplicaciones desde una consola de administración y también "dejando caer" el fichero en determinado directorio.
 
-
 ### Maven
 
 **Maven es una herramienta open-source, que se creó en 2001 con el objetivo de simplificar los procesos de build (compilar y generar ejecutables a partir del código fuente).**
@@ -366,7 +350,7 @@ Para ello, en Maven se definen tres ciclos de build del software con una serie d
 + **Verificar** que el código empaquetado es válido y cumple los criterios de calidad (verify).
 + **Instalar** el código empaquetado en el repositorio local de Maven, para usarlo como dependencia de otros proyectos (install).
 + **Desplegar** el código a un entorno (deploy).
-  
+
 Para poder llevar a cabo alguna de estas fases en nuestro código, tan solo tendremos que ejecutar `mvn` y el nombre de la fase (la palabra que puse entre paréntesis). Además van en cadena, es decir, si empaquetamos el código (package), Maven ejecutará desde la fase de validación (validate) a empaquetación (package). Así de simple.
 
 Por otra parte, con Maven la gestión de dependencias entre módulos y distintas versiones de librerías se hace muy sencilla. En este caso, solo tenemos que indicar los módulos que componen el proyecto, o qué librerías utiliza el software que estamos desarrollando en un fichero de configuración de Maven del proyecto llamado POM (Project Object Module).
@@ -420,11 +404,11 @@ Cada proyecto en JavaScript puede enfocarse como un paquete npm con su propia in
 `package.json` se generará cuando se ejecute npm init para inicializar un proyecto JavaScript/Node.js, con los siguientes metadatos básicos proporcionados por los desarrolladores:
 
 + **name:** el nombre de la librería/proyecto JavaScript
-  
+
 + **version:** la versión del proyecto. 
-  
+
 + **description:** la descripción del proyecto
-  
+
 + **license:** la licencia del proyecto
 
 #### NPM scripts
@@ -444,6 +428,7 @@ package.json también soporta la propiedad scripts que puede definirse para ejec
   }
 }
 ```
+
 Con eslint, prettier, ncc, jest no necesariamente instalados como ejecutables globales sino como locales de tu proyecto dentro de `node_modules/.bin/`.
 
 ## CI/CD (Continous Integration/Continous Deployment-Delivery)
@@ -488,7 +473,6 @@ Después de la automatización de las compilaciones y las pruebas de unidad e in
 
 Cada etapa (desde la incorporación de los cambios al código hasta la distribución de las compilaciones listas para la producción) implica la automatización de las pruebas y del lanzamiento del código. Al final de este proceso, el equipo de operaciones puede implementar una aplicación para la producción de forma rápida y sencilla.
 Descubra las otras implementaciones que puede automatizar
-
 
 ### Implementación continua
 

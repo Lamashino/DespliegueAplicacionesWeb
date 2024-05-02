@@ -32,55 +32,15 @@ Las conexiones entrantes se distribuyen entre los procesos secundarios de dos ma
 
 #### Primero sin clúster
 
-Para ver las ventajas que ofrece la agrupación en clústeres, comenzaremos con una aplicación de prueba en Node.js que no usa clústeres y la compararemos con una que sí los usa, se trata de la siguiente.
-
-Primero nos crearemos un directorio para los archivos que utilizaremos: `mkdir ....` y con `cd` nos ubicaremos dentro de dicho directorio.
-
-Trase ello, inicializamos el proyecto, lo que creará un **package.json** automáticamente:
-
-```console
-npm init -y
-```
-
-!!!note "Nota"
-    Cuando lo acompañamos con `-y`, le estamos diciendo a NPM que acepte todas las opciones por defecto.
-
-Al **package.json** generado hemos de añadirle las siguiente línea:
-
-```json
-  "type": "module"
-```
-
-Tal y como podéis ver en la imagen (cuidado con la *coma*):
-
-![](img/%20cluster-nuevo1.png)
-
-Y tras esto, instalaremos las herramientas que nos harán falta en el resto de la práctica, si es que no las teníamos ya:
-
-```sh
-npm install express
-```
-
-Y de forma global:
-
-```sh
-npm install -g loadtest pm2
-```
-
-Y ahora creemos una aplicación sencilla que ejecutará una tarea intensiva de CPU cada vez que la ejecute el usuario. Este pequeño programa aún no utilizará el módulo `cluster` para que de esta manera sólo se ejecute una sola instancia en la CPU cada vez que se lance. Más tarde la compararemos con otra utilizando dicho módulo.
-
-Cread en el directorio el siguiente archivo:
+Para ver las ventajas que ofrece la agrupación en clústeres, comenzaremos con una aplicación de prueba en Node.js que no usa clústeres y la compararemos con una que sí los usa, se trata de la siguiente:
 
 ```javascript
-//Se importa el paquete "express", se establece el p uerto a 3000 y se crea la variable app como una instancia de express
 import express from "express";
 
 const port = 3000;
 const app = express();
 
 console.log(`worker pid=${process.pid}`);
-
-//se crea el bucle que ejecutará la carga intensiva puesto que incrementa la variable "total", 5 millones de veces
 
 app.get("/carga", (req, res) => {
           let total = 0;
@@ -90,44 +50,51 @@ app.get("/carga", (req, res) => {
           res.send(`El resultado de la tarea instensiva de la CPU es ${total}\n`);
 });
 
-//Ponemos a escuchar nuestra aplicación en el puerto anteriormente definido
 app.listen(port, () => {
           console.log(`Aplicación escuchando en puerto ${port}`);
 });
 ```
-
 Se trata de una aplicación un tanto *prefabricada* en el sentido de que es algo que jamás encontraríamos en el mundo real. No obstante, nos servirá para ilustrar nuestro propósito.
 
-!!!task "Resumen"
+Esta aplicación contiene dos rutas, una ruta raíz `/` que devuelve la cadena `Hello World!` y otra ruta `/api/n` donde se toma `n` como parámetro y va realizando una operación de suma (el bucle for) cuyo resultado acumula en la variable `count` que se muestra al final.
+
+Si a este parámetro `n`, le damos un valor muy alto, nos permitirá simular operaciones intensivas y de ejecución prolongada en el servidor. Le damos como valor límite `5000000000` para evitar una operación demasiado costosa para nuestro ordenador.
+
+!!!task
     1. Debéis conectaros al servidor Debian mediante SSH
     2. Debéis crear un directorio para el proyecto de esta aplicación
-    3. DENTRO del directorio debéis iniciar el proyecto y modificar el *package.json*
-    4. Tras esto, DENTRO del directorio, ya podéis iniciar la aplicación con: `node index.js`
+    3. DENTRO del directorio ejecutaréis 2 comandos:
+          1. `npm init` para crear automáticamente la estructura de carpetas y el archivo `package.json` (Con ir dándole a <ENTER\> a todas las preguntas, os basta)
+          2. `npm install express` para instalar express para este proyecto
+    4. Tras esto, DENTRO del directorio, ya podéis iniciar la aplicación con: `node nombre_aplicacion.js`
 
-Se debe mostrar el **id** del proceso corriendo y un mensaje confirmando que el servidor está escuchando en el puerto 3000.
+Para comprobarlo, podéis acceder a `http://IP-maq-virtual:3000` o a `http://IP-maq-virtual:3000/api/50` donde `IP-maq-virtual` es la IP del adaptador puente de vuestra Debian.
 
-Para comprobarlo, podéis acceder a `http://IP-maq-virtual:3000`, done `IP-maq-virtual` es la IP de vuestra Debian. Podéis hacerlo de dos formas:
+Utilizada un valor de `n` relativamente pequeño, como el 50 del ejemplo anterior y comprobaréis que se ejecutará rápidamente, devolviendo una respuesta casi inmediata.
 
-1. Utilizando `curl` desde cualquier terminal de otra máquina:
-   
-    `curl http://IP-maq-virtual:3000/carga`
+Hagamos otra simple comprobación para valores de `n` más grandes. Desplegada e iniciada la aplicación, acceded a la ruta `http://IP-maq-virtual:3000/api/5000000000`. 
 
-2. Desde un navegador web desde cualquier otra máquina.
+![](img/no-cluster-1.png)
 
-La salida debe ofrecernos el resultado del cálculo intensivo.
+Mientras esta solicitud que tarda unos segundos se está procesando, acceded en otra pestaña del navegador a `http://IP-maq-virtual:3000` o a `http://IP-maq-virtual:3000/api/n` siendo `n` el valor que le queráis dar.
 
-Cuando ejecutamos el archivo `index.js`` con el comando node, el sistema operativo crea un proceso. Un proceso es una abstracción que el sistema operativo hace para un programa en ejecución. El SO asigna memoria para el programa y crea una entrada en una lista que contiene todos los procesos del SO. Esa entrada es un ID de proceso.
 
-El binario del programa se localiza y se carga en la memoria asignada al proceso. A partir de ahí, comienza a ejecutarse. Mientras se ejecuta, no tiene conocimiento de otros procesos en el sistema, y cualquier cosa que ocurra en el proceso no afecta a otros procesos.
+![](img/no-cluster-2.png)
+
+Utilizando las devoloper tools, podemos ver el tiempo que tardan en procesarse las solicitudes:
+
+1. La primera solicitud, al tener un valor de `n` grande, nos lleva unos cuantos segundos completarla.
+2. La segunda solicitud, pese a tener un valor de `n` que ya habíamos comprobado que ofrecía una respuesta casi inmediata, también se demora unos segundos.
+
+**¿Por qué ocurre esto?** Porque el único subproceso estará ocupado procesando la otra operación de ejecución prolongada. El único núcleo de la CPU tiene que completar la primera solicitud antes de que pueda encargarse de la otra.
 
 #### ¡Ahora con más clúster!
 
 Ahora usaremos el módulo de clúster en la aplicación para generar algunos procesos secundarios y ver cómo eso mejora las cosas.
 
-Crearemos un nuevo archivo llamado `primary.js`que será la aplicación anterior utilizando el módulo cluster. A continuación se muestra el archivo que contiene la lógica de los cluster:
+A continuación se muestra la aplicación modificada:
 
 ```javascript
-//importamos módulos cluster y os y además todo lo necesario para conocer la ubicación del "index.js"
 import cluster from "cluster";
 import os from "os";
 import { dirname } from "path";
@@ -135,18 +102,14 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-//Parte de código que hace referencia a "index.js"
-//Se determina el número de CPUs de la máquina y se loguean el PID del proceso principal, que es el que recibirá 
-//todas las peticiones y las distribuirá a los workers
 const cpuCount = os.cpus().length;
 
 console.log(`El número total de CPUs es ${cpuCount}`);
 console.log(`Primario pid=${process.pid}`);
 cluster.setupPrimary({
-          exec: __dirname + "/index.js",
+          exec: __dirname + "/sin.js",
 });
 
-//Este bucle itera tantas veces como núcleos hay en la máquina, llamando al método fork para crear el worker
 for (let i = 0; i < cpuCount; i++) {
           cluster.fork();
 }
@@ -156,50 +119,70 @@ cluster.on("exit", (worker, code, signal) => {
           cluster.fork();
 });
 ```
+Esta aplicación hace lo mismo que antes pero esta vez estamos generando varios procesos secundarios que compartirán el puerto 3000 y que podrán manejar las solicitudes enviadas a este puerto. Los procesos de trabajo se generan utilizando el método `child_process.fork()`. El método devuelve un objeto `ChildProcess` que tiene un canal de comunicación incorporado que permite que los mensajes se transmitan entre el hijo y su padre.
 
 Creamos tantos procesos secundarios como núcleos de CPU hay en la máquina en la que se ejecuta la aplicación. Se recomienda no crear más *workers* que núcleos lógicos en la computadora, ya que esto puede causar una sobrecarga en términos de costos de programación. Esto sucede porque el sistema tendrá que programar todos los procesos creados para que se vayan ejecutando por turnos en los núcleos.
 
-Los *workers* son creados y administrados por el proceso maestro. 
+Los *workers* son creados y administrados por el proceso maestro. Cuando la aplicación se ejecuta por primera vez, verificamos si es un proceso maestro con `isMaster`. Esto está determinado por la variable `process.env.NODE_UNIQUE_ID`. Si `process.env.NODE_UNIQUE_ID` tiene valor *undefined*, entonces `isMaster` será *true*.
 
 Si el proceso es un maestro, llamamos a `cluster.fork()` para generar varios procesos. Registramos los ID de proceso maestro y *worker*. Cuando un proceso secundario muere, generamos uno nuevo para seguir utilizando los núcleos de CPU disponibles.
 
-Si ejecutamos ahora **primary.js** con `node primary.js`, veremos que se indica que se crea un proceso primario y tantos secundarios como núcleos tenga la máquina, escuchando en el puerto 3000.
+Ahora repetiremos el mismo experimento de antes, primero realizamos una solicitud al servidor con un valor alto `n`: 
 
-Comprueba también que todo funciona correctamente con `curl` o  con un navegador web, igual que antes.
+![](img/clusterOK-1.png)
+
+Y ejecutamos rápidamente otra solicitud en otra pestaña del navegador, midiendo los tiempos de procesamiento de ambas:
+
+![](img/clusterOK-2.png)
+
+Comprobaremos que éstos se reducen drásticamente.
 
 !!!note
     Con varios *workers* disponibles para aceptar solicitudes, se mejoran tanto la disponibilidad del servidor como el rendimiento.
 
+Ejecutar una solicitud en una pestaña del navegador y ejecutar rápidamente otra en una segunda pestaña sirve para mostrarnos la mejora que ofrece la agrupación en clústeres para nuestro ejemplo de una forma más o menos rápida, pero es un método un tanto "chapucero" y no es una forma adecuada o confiable de determinar las mejoras de rendimiento.
+
+En el siguiente apartado echaremos un vistazo a algunos puntos de referencia que demostrarán mejor cuánto ha mejorado la agrupación en clústeres nuestra aplicación.
+
 #### Métricas de rendimiento
 
-Realizaremos una prueba de carga en nuestras aplicación para ver cómo maneja una gran cantidad de conexiones entrantes. Usaremos el paquete `loadtest` instalado al inicio para esto.
+Realizaremos una prueba de carga en nuestras dos aplicaciones para ver cómo cada una maneja una gran cantidad de conexiones entrantes. Usaremos el paquete `loadtest` para esto.
 
-El paquete `loadtest` nos permite simular una gran cantidad de conexiones simultáneas a nuestra aplicación para que podamos medir su rendimiento.
+El paquete `loadtest` nos permite simular una gran cantidad de conexiones simultáneas a nuestra API para que podamos medir su rendimiento.
 
-Primeramente, iniciamos nuestra aplicación sin cluster:
+Para usar `loadtest`, primero debemos instalarlo globalmente. Tras conectaros por SSH al servidor Debian:
 
-`node index.js``
-
-Y cuando ya tengamos la aplicación corriendo y a la escucha, ejecutamos a la vez **loadtest** para las métricas:
-
-```bash
-loadtest -n 1200 -c 200 -k http://localhost:3000/
+```sh
+npm install -g loadtest
 ```
 
-La opción `-n` indica el número de peticiones o solicitudes que se envían a la aplicación, mientras que la opción `-c` indica cuántas de esas peticiones serán concurrentes (simultáneas).
+Luego ejecutamos la aplicación que queremos probar (`node nombre_aplicacion.js`). Comenzaremos probando la versión que no utiliza la agrupación en clústeres.
 
-La salida de esta prueba con ***loadtest*** nos ofrecerá múltiples métricas:
+Mientras ejecutamos la aplicación, en otro terminal realizamos la siguiente prueba de carga:
 
-+ Total time: cuánto tiempo han tardado en procesarse todas las peticiones.
-+ Requests per second (rps): número de peticiones que el servidor puede manejar por segundo
-+ Mean latency: mide el tiempo medio que tarda una petición en ser enviada y obtener una respuesta
+```sh
+loadtest http://localhost:3000/api/500000 -n 1000 -c 100
+```
 
-!!!warning "Atención"
-    Estas métricas variarán en función de la máquina y sus características.
+El comando anterior enviará 1000 solicitudes a la URL dada, de las cuales 100 son concurrentes. El siguiente es el resultado de ejecutar el comando anterior:
 
-!!!task "Tarea"
-    Realiza y documenta adecuadamente esta prueba, en primera instancia con la aplicación sin clusters `index.js` y, posteriormente, con clusters (`primary.js`).
-    Compara y comenta los resultados.
+![](img/loadtest_no_cluster.png)
+
+Vemos que con la misma solicitud (con n= 500000) el servidor ha podido manejar 404 solicitudes por segundo con una latencia media de 232.4 milisegundos (el tiempo promedio que tarda en completar una sola solicitud).
+
+Intentémoslo de nuevo, pero esta vez con más solicitudes (y sin clústeres):
+
+![](img/loadtest_no_cluster_2.png)
+
+Vemos que las métricas arrojan resultados aún peores.
+
+Ahora detenemos nuestra aplicación sin clústers y ejecutamos la que sí los tiene (`node nombre_aplicacion_cluster.js`). Ejecutaremos exactamente las mismas pruebas con el objetivo de realizar una comparación:
+
+![](img/loadtest_cluster.png)
+
+![](img/loadtest_cluster_2.png)
+
+Es obvio que los clústers permiten manejar una mayor cantidad de peticiones por segundo con una menor latencia.
 
 #### Uso de PM2 para administrar un clúster de Node.js
 
@@ -209,32 +192,40 @@ Primero hemos determinado la cantidad de *workers* (usando la cantidad de núcle
 
 En nuestra aplicación de ejemplo muy sencilla, tuvimos que escribir una cantidad considerable de código solo para administración la agrupación en clústeres. En una aplicación de producción es bastante probable que se deba escribir aún más código.
 
-Existe una herramienta que nos puede ayudar a administrar todo esto un poco mejor: el administrador de procesos `PM2` que hemos instalado al principio. `PM2` es un administrador de procesos de producción para aplicaciones Node.js con un balanceador de carga incorporado.
+Existe una herramienta que nos puede ayudar a administrar todo esto un poco mejor: el administrador de procesos `PM2`. `PM2` es un administrador de procesos de producción para aplicaciones Node.js con un balanceador de carga incorporado.
 
 Cuando está configurado correctamente, `PM2` ejecuta automáticamente la aplicación en modo de clúster, generando *workers* y se encarga de generar nuevos *workers* cuando uno de ellos muera.
 
 `PM2` facilita la parada, eliminación e inicio de procesos, además de disponer de algunas herramientas de monitorización que pueden ayudarnos a monitorizar y ajustar el rendimiento de su aplicación.
 
-Vamos a utilizarlo con nuestra primera aplicación, la que no estaba "clusterizada" en el código. Para ello ejecutaremos el siguiente comando:
+Para usar `PM2`, primero instalamos globalmente en nuestra Debian:
 
 ```sh
-pm2 start index.js -i 0
+npm install pm2 -g
+```
+
+Vamos a utilizarlo con nuestra primera aplicación, la que no estab "clusterizada" en el código. Para ello ejecutaremos el siguiente comando:
+
+```sh
+pm2 start nombre_aplicacion_sin_cluster.js -i 0
 ```
 
 Donde:
 
 + `-i` <número workers> le indicará a `PM2` que inicie la aplicación en `cluster_mode` (a diferencia de `fork_mode`).
-  
+
     Si <número workers>se establece a 0, `PM2` generará automáticamente tantos *workers* como núcleos de CPU haya.
 
 Y así, nuestra aplicación se ejecuta en modo de clúster, sin necesidad de cambios de código. 
 
 !!!task
-    Ejecuta y documenta con capturas de pantallas, las misma prueba que antes utilizando `loadtest` pero utilizando PM2 y comprueba si se obtienen los mismos resultados. Obviamente, hablamos de la aplicación clusterizada.
+    Ejecuta y documenta con capturas de pantallas, las mismas pruebas que antes pero utilizando PM2 y comprueba si se obtienen los mismos resultados.
 
 Por detrás, `PM2` también utiliza el módulo `cluster` de Node.js, así como otras herramientas que facilitan la gestión de procesos.
 
-En el Terminal, obtendremos una tabla que muestra algunos detalles de los procesos generados.
+En el Terminal, obtendremos una tabla que muestra algunos detalles de los procesos generados:
+
+![](img/pm2_1.png)
 
 Podemos detener la aplicación con el siguiente comando:
 
@@ -244,6 +235,9 @@ pm2 stop app.js
 
 La aplicación se desconectará y la salida por terminal mostrará todos los procesos con un estado `stopped`.
 
+![](img/pm2_2.png)
+
+
 En vez de tener pasar siempre las configuraciones cuando ejecuta la aplicación con `pm2 start app.js -i 0`, podríamos facilitarnos la tarea y guardarlas en un archivo de configuración separado, llamado [Ecosystem](https://pm2.keymetrics.io/docs/usage/application-declaration/). 
 
 Este archivo también nos permite establecer configuraciones específicas para diferentes aplicaciones.
@@ -252,16 +246,16 @@ Crearemos el archivo *Ecosystem* con el siguiente comando:
 
 ![](img/ecosystem.png)
 
-Que generará un archivo llamado ***ecosystem.config.js***. Para poder utilizar módulos, debéis renombrarlo a ***ecosystem.config.cjs***. Tras ello y para el caso concreto de nuestra aplicación, necesitamos modificarlo como se muestra a continuación:
+Que generará un archivo llamado ***ecosystem.config.js***. Para el caso concreto de nuestra aplicación, necesitamos modificarlo como se muestra a continuación:
 
-```yaml
+```json
 module.exports = {
  apps: [
  {
- name: "nombre_aplicacion", 
-  script: "index.js",
+ name: "nombre_aplicacion",
+ script: "nombre_aplicacion_sin_cluster.js",
  instances: 0,
- exec_mode: "cluster", 
+ exec_mode: "cluster",
  },
  ],
 };
@@ -271,22 +265,19 @@ Al configurar `exec_mode` con el valor `cluster`, le indica a `PM2` que balancee
 
 La opción `-i` o `instances` se puede establecer con los siguientes valores:
 
-+ `0` o `max`(en desuso) para "repartir" la aplicación entre todas las CPU
+  + `0` o `max`(en desuso) para "repartir" la aplicación entre todas las CPU
 
-+ `-1` para "repartir" la aplicación en todas las CPU - 1
+  + `-1` para "repartir" la aplicación en todas las CPU - 1
 
-+ `número` para difundir la aplicación a través de un número concreto de CPU
+  + `número` para difundir la aplicación a través de un número concreto de CPU
 
 Ahora podemos ejecutar la aplicación con:
 
 ```sh
-pm2 start ecosystem.config.cjs
+pm2 start ecosystem.config.js
 ```
 
-La aplicación se ejecutará en modo clúster, exactamente como antes y podremos realizar las pruebas que necesitemos.
-
-!!!task "Tarea"
-    Recoge las métricas con `loadtest` y este nuevo método para gestionar clusters. Compara y explica los resultados con los casos anteriores.
+La aplicación se ejecutará en modo clúster, exactamente como antes.
 
 Podremos iniciar, reiniciar, recargar, detener y eliminar una aplicación con los siguientes comandos, respectivamente:
 
@@ -296,10 +287,10 @@ $ pm2 restart nombre_aplicacion
 $ pm2 reload nombre_aplicacion
 $ pm2 stop nombre_aplicacion
 $ pm2 delete nombre_aplicacion
-
+ 
 # Cuando usemos el archivo Ecosystem:
-
-$ pm2 [start|restart|reload|stop|delete] ecosystem.config.cjs
+ 
+$ pm2 [start|restart|reload|stop|delete] ecosystem.config.js
 ```
 
 El comando `restart` elimina y reinicia inmediatamente los procesos, mientras que el comando `reload` logra un tiempo de inactividad de 0 segundos donde los *workers* se reinician uno por uno, esperando que aparezca un nuevo *worker* antes de matar al anterior.
@@ -314,8 +305,7 @@ También puede verificar el estado, los registros y las métricas de las aplicac
     pm2 logs
     pm2 monit
     ```
-    
-    Identifica en los logs la creación de los workers y la aplicación a la escucha en el puerto indicado.
+
 
 !!!warning
     Documenta la realización de toda esta práctica adecuadamente, con las explicaciones y justificaciones necesarias, las respuestas a las preguntas planteadas y las capturas de pantalla pertinentes.
@@ -328,7 +318,8 @@ Fijáos en las siguientes imágenes:
 
 ![](img/loadtest_cluster_3.png)
 
-La primera imagen ilustra los resultados de unas pruebas de carga sobre una aplicación sin clúster y la segunda sobre la aplicación clusterizada.
+
+La primera imagen ilustra los resultados de unas pruebas de carga sobre la aplicación sin clúster y la segunda sobre la aplicación clusterizada.
 
 ¿Sabrías decir por qué en algunos casos concretos, como este, la aplicación sin clusterizar tiene mejores resultados?
 
@@ -338,8 +329,13 @@ La primera imagen ilustra los resultados de unas pruebas de carga sobre una apli
 
 [Improving Node.js Application Performance With Clustering](https://blog.appsignal.com/2021/02/03/improving-node-application-performance-with-clustering.html)
 
-[How To Scale Node.js Applications with Clustering](https://www.digitalocean.com/community/tutorials/how-to-scale-node-js-applications-with-clustering)
-
 ## Evaluación
 
-De acuerdo a la rúbrica publicada en Aules.
+| Criterio                                                                                                                                      | Puntuación   |
+|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| Pruebas correctas y bien documentadas de despliegue de la aplicación **sin** cluster      | **2 puntos**      |
+| Pruebas correctas y bien documentadas de despliegue de la aplicación **con** cluster       | **2 puntos**  |
+| Pruebas correctas y bien documentadas de todas las opciones con loadtest         | **2 puntos**  |
+| Pruebas correctas y bien documentadas de todas las opciones con PM2              | **2 puntos**  |                                                                                                     | 
+| Respuestas correctas a las cuestiones            | **1 puntos**     |
+| Se ha prestado especial atención al formato del documento, utilizando la plantilla actualizada y haciendo un correcto uso del lenguaje técnico | **1 puntos**     |

@@ -417,7 +417,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 2
+    Tema 2. Arquitectura Web
   </span>
   
 
@@ -427,7 +427,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Tema 2
+            Tema 2. Arquitectura Web
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -473,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ArqWeb/" class="md-nav__link">
+      <a href="../Tema2_teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -589,7 +589,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 3
+    Tema 3. Servidores de aplicaciones
   </span>
   
 
@@ -599,7 +599,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Tema 3
+            Tema 3. Servidores de aplicaciones
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -645,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ServAplic/" class="md-nav__link">
+      <a href="../Tema3_teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -920,7 +920,7 @@
         
   
   <span class="md-ellipsis">
-    (ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
+    Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
   </span>
   
 
@@ -2271,7 +2271,7 @@
 <h3 id="usando-los-clusters">Usando los clusters</h3>
 <h4 id="primero-sin-cluster">Primero sin clúster</h4>
 <p>Para ver las ventajas que ofrece la agrupación en clústeres, comenzaremos con una aplicación de prueba en Node.js que no usa clústeres y la compararemos con una que sí los usa, se trata de la siguiente:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;express&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;express&quot;</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
@@ -2290,7 +2290,7 @@
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Aplicación escuchando en puerto </span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">});</span>
 </code></pre></div>
-Se trata de una aplicación un tanto <em>prefabricada</em> en el sentido de que es algo que jamás encontraríamos en el mundo real. No obstante, nos servirá para ilustrar nuestro propósito.</p>
+<p>Se trata de una aplicación un tanto <em>prefabricada</em> en el sentido de que es algo que jamás encontraríamos en el mundo real. No obstante, nos servirá para ilustrar nuestro propósito.</p>
 <p>Esta aplicación contiene dos rutas, una ruta raíz <code>/</code> que devuelve la cadena <code>Hello World!</code> y otra ruta <code>/api/n</code> donde se toma <code>n</code> como parámetro y va realizando una operación de suma (el bucle for) cuyo resultado acumula en la variable <code>count</code> que se muestra al final.</p>
 <p>Si a este parámetro <code>n</code>, le damos un valor muy alto, nos permitirá simular operaciones intensivas y de ejecución prolongada en el servidor. Le damos como valor límite <code>5000000000</code> para evitar una operación demasiado costosa para nuestro ordenador.</p>
 <div class="admonition task">
@@ -2321,7 +2321,7 @@ Se trata de una aplicación un tanto <em>prefabricada</em> en el sentido de que 
 <h4 id="ahora-con-mas-cluster">¡Ahora con más clúster!</h4>
 <p>Ahora usaremos el módulo de clúster en la aplicación para generar algunos procesos secundarios y ver cómo eso mejora las cosas.</p>
 <p>A continuación se muestra la aplicación modificada:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">cluster</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;cluster&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">cluster</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;cluster&quot;</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">os</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;os&quot;</span><span class="p">;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dirname</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;path&quot;</span><span class="p">;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">fileURLToPath</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;url&quot;</span><span class="p">;</span>
@@ -2345,7 +2345,7 @@ Se trata de una aplicación un tanto <em>prefabricada</em> en el sentido de que 
 <a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">          </span><span class="nx">cluster</span><span class="p">.</span><span class="nx">fork</span><span class="p">();</span>
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">});</span>
 </code></pre></div>
-Esta aplicación hace lo mismo que antes pero esta vez estamos generando varios procesos secundarios que compartirán el puerto 3000 y que podrán manejar las solicitudes enviadas a este puerto. Los procesos de trabajo se generan utilizando el método <code>child_process.fork()</code>. El método devuelve un objeto <code>ChildProcess</code> que tiene un canal de comunicación incorporado que permite que los mensajes se transmitan entre el hijo y su padre.</p>
+<p>Esta aplicación hace lo mismo que antes pero esta vez estamos generando varios procesos secundarios que compartirán el puerto 3000 y que podrán manejar las solicitudes enviadas a este puerto. Los procesos de trabajo se generan utilizando el método <code>child_process.fork()</code>. El método devuelve un objeto <code>ChildProcess</code> que tiene un canal de comunicación incorporado que permite que los mensajes se transmitan entre el hijo y su padre.</p>
 <p>Creamos tantos procesos secundarios como núcleos de CPU hay en la máquina en la que se ejecuta la aplicación. Se recomienda no crear más <em>workers</em> que núcleos lógicos en la computadora, ya que esto puede causar una sobrecarga en términos de costos de programación. Esto sucede porque el sistema tendrá que programar todos los procesos creados para que se vayan ejecutando por turnos en los núcleos.</p>
 <p>Los <em>workers</em> son creados y administrados por el proceso maestro. Cuando la aplicación se ejecuta por primera vez, verificamos si es un proceso maestro con <code>isMaster</code>. Esto está determinado por la variable <code>process.env.NODE_UNIQUE_ID</code>. Si <code>process.env.NODE_UNIQUE_ID</code> tiene valor <em>undefined</em>, entonces <code>isMaster</code> será <em>true</em>.</p>
 <p>Si el proceso es un maestro, llamamos a <code>cluster.fork()</code> para generar varios procesos. Registramos los ID de proceso maestro y <em>worker</em>. Cuando un proceso secundario muere, generamos uno nuevo para seguir utilizando los núcleos de CPU disponibles.</p>

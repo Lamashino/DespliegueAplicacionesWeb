@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://lamashino.github.io/DespliegueAplicacionesWeb/ServAplic/">
+        <link rel="canonical" href="https://lamashino.github.io/DespliegueAplicacionesWeb/Tema3_teoria/">
       
       
         <link rel="prev" href="../Practica2.1/">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#servidores-de-aplicaciones" class="md-skip">
+        <a href="#tema-3-servidores-de-aplicaciones" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -417,7 +417,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 2
+    Tema 2. Arquitectura Web
   </span>
   
 
@@ -427,7 +427,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Tema 2
+            Tema 2. Arquitectura Web
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -473,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ArqWeb/" class="md-nav__link">
+      <a href="../Tema2_teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -589,7 +589,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 3
+    Tema 3. Servidores de aplicaciones
   </span>
   
 
@@ -599,7 +599,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Tema 3
+            Tema 3. Servidores de aplicaciones
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1295,7 +1295,7 @@
         
   
   <span class="md-ellipsis">
-    (ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
+    Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
   </span>
   
 
@@ -2624,7 +2624,7 @@
                   
 
 
-<h1 id="servidores-de-aplicaciones"><strong>Servidores de aplicaciones</strong></h1>
+<h1 id="tema-3-servidores-de-aplicaciones"><strong>Tema 3 - Servidores de aplicaciones</strong></h1>
 <h2 id="introduccion">Introducción</h2>
 <p>Un servidor de aplicaciones es un marco mixto de software que permite tanto la creación de aplicaciones web como un entorno de servidor para ejecutarlas.</p>
 <p>A menudo puede ser una pila compleja de diferentes elementos computacionales que ejecutan tareas específicas que necesitan trabajar como uno solo para alimentar múltiples nubes y software y aplicaciones basadas en la web.</p>
@@ -2942,7 +2942,7 @@
 </ul>
 <h4 id="npm-scripts">NPM scripts</h4>
 <p>package.json también soporta la propiedad scripts que puede definirse para ejecutar herramientas de línea de comandos que se instalan en el contexto local del proyecto. Por ejemplo, la porción de scripts de un proyecto npm puede tener un aspecto similar a este:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;build&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tsc&quot;</span><span class="p">,</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prettier --write **/*.ts&quot;</span><span class="p">,</span>
@@ -2954,7 +2954,7 @@
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
 </code></pre></div>
-Con eslint, prettier, ncc, jest no necesariamente instalados como ejecutables globales sino como locales de tu proyecto dentro de <code>node_modules/.bin/</code>.</p>
+<p>Con eslint, prettier, ncc, jest no necesariamente instalados como ejecutables globales sino como locales de tu proyecto dentro de <code>node_modules/.bin/</code>.</p>
 <h2 id="cicd-continous-integrationcontinous-deployment-delivery">CI/CD (Continous Integration/Continous Deployment-Delivery)</h2>
 <p>La CI/CD es un método para distribuir las aplicaciones a los clientes con frecuencia mediante el uso de la automatización en las etapas del desarrollo de aplicaciones. Los principales conceptos que se le atribuyen son la integración, la distribución y la implementación continuas. Se trata de una solución para los problemas que puede generar la integración del código nuevo para los equipos de desarrollo y de operaciones (también conocida como "el infierno de la integración").</p>
 <p>En concreto, el proceso de integración y distribución continuas incorpora la automatización y la supervisión permanentes en todo el ciclo de vida de las aplicaciones, desde las etapas de integración y prueba hasta las de distribución e implementación. Este conjunto de prácticas se conoce como "canales de CI/CD" y cuenta con el respaldo de los equipos de desarrollo y de operaciones que trabajan en conjunto de manera ágil, con un enfoque de DevOps o de ingeniería de confiabilidad del sitio (SRE).</p>

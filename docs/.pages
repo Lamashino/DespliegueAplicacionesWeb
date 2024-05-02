@@ -6,12 +6,12 @@ nav:
         - ... | Practica1.*.md
     - Tema 2. Arquitectura Web:
       - Teoría:
-        - ArqWeb.md
+        - Tema2_teoria.md
       - Prácticas:
         - ... | Practica2.*.md
-    - Tema 3:
+    - Tema 3. Servidores de aplicaciones:
       - Teoría:
-        - ServAplic.md
+        - Tema3_teoria.md
       - Prácticas:
         - ... | Practica3.*.md
     - Tema 4:

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://lamashino.github.io/DespliegueAplicacionesWeb/ArqWeb/">
+        <link rel="canonical" href="https://lamashino.github.io/DespliegueAplicacionesWeb/Tema2_teoria/">
       
       
         <link rel="prev" href="../Practica1.1/">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arquitectura-web-implantacion-y-administracion-de-servidores-web" class="md-skip">
+        <a href="#tema-2-arquitectura-web-implantacion-y-administracion-de-servidores-web" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -419,7 +419,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 2
+    Tema 2. Arquitectura Web
   </span>
   
 
@@ -429,7 +429,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Tema 2
+            Tema 2. Arquitectura Web
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -847,7 +847,7 @@
             
   
   <span class="md-ellipsis">
-    Tema 3
+    Tema 3. Servidores de aplicaciones
   </span>
   
 
@@ -857,7 +857,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Tema 3
+            Tema 3. Servidores de aplicaciones
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -903,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ServAplic/" class="md-nav__link">
+      <a href="../Tema3_teoria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1034,7 +1034,7 @@
         
   
   <span class="md-ellipsis">
-    (ACTUALIZADA) Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
+    Práctica 3.3 - Despliegue de una aplicación "clusterizada" con Node Express
   </span>
   
 
@@ -2363,7 +2363,7 @@
                   
 
 
-<h1 id="arquitectura-web-implantacion-y-administracion-de-servidores-web"><strong>Arquitectura Web. Implantación y administración de servidores web</strong></h1>
+<h1 id="tema-2-arquitectura-web-implantacion-y-administracion-de-servidores-web">Tema 2 - Arquitectura Web. Implantación y administración de servidores web</h1>
 <h2 id="introduccion">Introducción</h2>
 <p>Con la evolución y el acceso libre a Internet, uno de los principales alicientes que han surgido es la publicación de páginas web donde se pueden almacenar unos contenidos bastante atractivos para nosotros y que, al mismo tiempo, pueden ser consultados desde cualquier del mundo para todos. </p>
 <p>Cabe decir que, con la popularización de Internet, tanto empresas como usuarios han visto la necesidad de establecer un punto desde donde anunciar sus productos, o bien, a título particular, dar publicidad a las aficiones o capacidades personales mediante la publicación de páginas web. </p>
@@ -2462,8 +2462,10 @@
 </li>
 <li>
 <p>El cliente Web descodifica la URL, separando sus diferentes partes: el protocolo de acceso, la dirección DNS o IP del servidor, el posible puerto opcional (el valor por defecto es 80) y el objeto requerido del servidor. <code>http://direccion[:puerto][path]</code></p>
-<p><code>Ejemplo: http://www.miweb.com/documento.html</code></p>
 </li>
+</ol>
+<p><code>Ejemplo: http://www.miweb.com/documento.html</code></p>
+<ol>
 <li>
 <p>Se abre una conexión TCP/IP con el servidor, llamando al puerto TCP correspondiente. En ese momento, se realiza la petición HTTP. Para ello, se envía el comando necesario (GET, POST, HEAD,...), la dirección del objeto requerido (el contenido de la URL que sigue a la dirección del servidor), la versión del protocolo HTTP empleada y un conjunto variable de información, que incluye datos sobre las capacidades del navegador (browser), datos opcionales para el servidor, etc. </p>
 </li>
@@ -2479,15 +2481,9 @@
 <p><img alt="" src="../img/metodos.png" style="height:420px;width:600px" /></p>
 <p>El estándar HTTP/1.0 recoge únicamente tres comandos, que representan las operaciones de recepción y envío de información y chequeo de estado: </p>
 <ul>
-<li>
-<p><strong>GET</strong>: se utiliza para solicitar cualquier tipo de información o recurso al servidor. Cada vez que se pulsa sobre un enlace o se teclea directamente a una URL se usa este comando. Como resultado, el servidor HTTP enviará el recurso correspondiente. </p>
-</li>
-<li>
-<p><strong>HEAD</strong>: se utiliza para solicitar información sobre el recurso: su tamaño, su tipo, su fecha de modificación… Es usado por los gestores de cachés de páginas o los servidores proxy, para conocer cuándo es necesario actualizar la copia que se mantiene del recurso. Con HEAD se podrá comprobar la última fecha de modificación de un recurso antes de traer una nueva copia del mismo. </p>
-</li>
-<li>
-<p><strong>POST</strong>: sirve para enviar información al servidor, por ejemplo, los datos contenidos en un formulario. El servidor pasará esta información a un proceso encargado de su tratamiento. </p>
-</li>
+<li><strong>GET</strong>: se utiliza para solicitar cualquier tipo de información o recurso al servidor. Cada vez que se pulsa sobre un enlace o se teclea directamente a una URL se usa este comando. Como resultado, el servidor HTTP enviará el recurso correspondiente. </li>
+<li><strong>HEAD</strong>: se utiliza para solicitar información sobre el recurso: su tamaño, su tipo, su fecha de modificación… Es usado por los gestores de cachés de páginas o los servidores proxy, para conocer cuándo es necesario actualizar la copia que se mantiene del recurso. Con HEAD se podrá comprobar la última fecha de modificación de un recurso antes de traer una nueva copia del mismo. </li>
+<li><strong>POST</strong>: sirve para enviar información al servidor, por ejemplo, los datos contenidos en un formulario. El servidor pasará esta información a un proceso encargado de su tratamiento. </li>
 </ul>
 <p>La versión 1.1 del protocolo incorpora unos pocos comandos más como son: OPTIONS, PUT, DELETE, TRACE y CONNECT. Veamos algunos de ellos: </p>
 <ul>
