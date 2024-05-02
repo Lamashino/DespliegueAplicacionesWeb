@@ -1,24 +1,24 @@
 nav:
-    - Tema 1:
+    - Tema 1. VPS con Debian:
       - Teoría:
-        - debian_teoria.md
+        - Tema1_teoria.md
       - Prácticas:
-        - ... | debian.md
+        - ... | Practica1.*.md
     - Tema 2:
       - Teoría:
         - ArqWeb.md
       - Prácticas:
-        - ... | P1.*.md
+        - ... | Practica2.*.md
     - Tema 3:
       - Teoría:
         - ServAplic.md
       - Prácticas:
-        - ... | P3.*.md
+        - ... | Practica3.*.md
     - Tema 4:
       - Teoría: 
         - dns.md
       - Prácticas:
-        - ... | P4.*.md
+        - ... | Practica4.*.md
     - Tema 5:
       - Teoría: 
         - index_git.md
@@ -36,7 +36,7 @@ nav:
         - gitflow.md
         - referencias.md
       - Prácticas:
-        - ... | P5.*.md      
+        - ... | Practica5.*.md      
     - Tema 6:
       - Teoría: 
         - index_docker.md
@@ -50,10 +50,10 @@ nav:
         - dockerfile.md
         - tips.md
       - Prácticas:
-        - ... | P6.*.md 
+        - ... | Practica6.*.md 
     - Tema 7:
       - Teoría: 
         - cicd.md
       - Prácticas:
-        - ... | P7.*.md    
+        - ... | Practica7.*.md    
 
