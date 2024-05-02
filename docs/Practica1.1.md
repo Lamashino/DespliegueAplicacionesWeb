@@ -1,5 +1,5 @@
 ---
-title: 'Instalación y configuración de nuestra máquina virtual'
+title: 'Práctica 1.1 - Instalación y configuración de nuestra máquina virtual'
 ---
 
 # Práctica 1.1 - Instalación y configuración de nuestra máquina virtual

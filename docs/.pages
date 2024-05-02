@@ -4,7 +4,7 @@ nav:
         - Tema1_teoria.md
       - Prácticas:
         - ... | Practica1.*.md
-    - Tema 2:
+    - Tema 2. Arquitectura Web:
       - Teoría:
         - ArqWeb.md
       - Prácticas:
